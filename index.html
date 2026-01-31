@@ -535,8 +535,8 @@
             min-width: 250px;
         }
         
-        /* Excel导出区域 */
-        .excel-export-section {
+        /* Excel导入导出区域 */
+        .excel-import-export-section {
             background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
             border-left: 4px solid var(--primary-color);
             padding: 1.5rem;
@@ -544,19 +544,19 @@
             margin: 1.5rem 0;
         }
         
-        .excel-export-section h4 {
+        .excel-import-export-section h4 {
             color: var(--primary-dark);
             margin-bottom: 0.5rem;
         }
         
-        .excel-export-buttons {
+        .excel-buttons {
             display: flex;
             gap: 0.75rem;
             flex-wrap: wrap;
             margin-top: 1rem;
         }
         
-        .excel-export-btn {
+        .excel-btn {
             background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             color: white;
             padding: 0.75rem 1.25rem;
@@ -571,10 +571,94 @@
             gap: 0.5rem;
         }
         
-        .excel-export-btn:hover {
+        .excel-btn:hover {
             background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
             transform: translateY(-2px);
             box-shadow: var(--shadow);
+        }
+        
+        /* 新增：Excel导入样式 */
+        .excel-import-container {
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border-left: 4px solid var(--success-color);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin: 1.5rem 0;
+        }
+        
+        .excel-import-container h4 {
+            color: var(--success-color);
+            margin-bottom: 1rem;
+        }
+        
+        .import-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .import-option {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .import-option input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .import-option label {
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .import-file-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px dashed var(--border-color);
+            border-radius: var(--radius);
+            background: var(--bg-card);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .import-file-input:hover {
+            border-color: var(--primary-color);
+            background: rgba(59, 130, 246, 0.05);
+        }
+        
+        .import-file-input.dragover {
+            border-color: var(--success-color);
+            background: rgba(16, 185, 129, 0.1);
+        }
+        
+        .import-preview {
+            margin-top: 1.5rem;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+        }
+        
+        .import-preview table {
+            width: 100%;
+            font-size: 0.85rem;
+        }
+        
+        .import-preview th {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 0.8rem;
+            padding: 0.5rem;
+        }
+        
+        .import-preview td {
+            padding: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
         }
         
         /* 提醒样式 */
@@ -845,7 +929,7 @@
                 flex-direction: column;
             }
             
-            .excel-export-buttons {
+            .excel-buttons {
                 flex-direction: column;
             }
             
@@ -1029,10 +1113,181 @@
             font-size: 0.8rem;
             font-weight: 500;
         }
+        
+        /* 新增：导入状态指示器 */
+        .import-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            border-radius: var(--radius);
+            background: var(--bg-secondary);
+            margin: 1rem 0;
+        }
+        
+        .import-success {
+            color: var(--success-color);
+        }
+        
+        .import-error {
+            color: var(--danger-color);
+        }
+        
+        .import-warning {
+            color: var(--warning-color);
+        }
+        
+        .import-summary {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+        }
+        
+        .import-summary h5 {
+            margin-bottom: 0.75rem;
+        }
+        
+        .import-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .import-summary li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+    
+        /* ===== 登录界面（新增） ===== */
+        #login-screen{
+            position: fixed;
+            inset: 0;
+            display: none; /* 默认隐藏，JS 根据登录态切换 */
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: radial-gradient(1200px 600px at 30% 10%, rgba(59,130,246,0.25), transparent 55%),
+                        radial-gradient(900px 500px at 80% 40%, rgba(16,185,129,0.18), transparent 55%),
+                        var(--bg-secondary);
+            z-index: 20000;
+        }
+        .login-card{
+            width: 100%;
+            max-width: 420px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-xl);
+            overflow: hidden;
+        }
+        .login-header{
+            padding: 18px 20px;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+            color: #fff;
+        }
+        .login-header h2{
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .login-header p{
+            margin-top: 6px;
+            opacity: .9;
+            font-size: .9rem;
+        }
+        .login-body{
+            padding: 20px;
+        }
+        .login-body .form-group{
+            margin-bottom: 14px;
+        }
+        .login-actions{
+            display: flex;
+            gap: 10px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+        .login-error{
+            margin-top: 10px;
+            display: none;
+        }
+        .login-tip{
+            margin-top: 10px;
+            font-size: .85rem;
+            color: var(--text-secondary);
+        }
+        .btn-ghost{
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.35);
+            color: #fff;
+        }
+        .btn-ghost:hover{
+            background: rgba(255,255,255,0.12);
+        }
+        /* 头部退出按钮（新增） */
+        .logout-btn{
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: #fff;
+            padding: 0.5rem 0.9rem;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+        }
+        .logout-btn:hover{
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-1px);
+        }
+
     </style>
 </head>
 <body>
-    <div class="container">
+
+    <!-- ===== 登录界面（新增） ===== -->
+    <div id="login-screen" aria-hidden="true">
+        <div class="login-card" role="dialog" aria-modal="true" aria-label="系统登录">
+            <div class="login-header">
+                <h2><i class="fas fa-shield-dog"></i> 警犬繁育管理系统登录</h2>
+                <p>请输入账号密码后进入系统</p>
+            </div>
+            <div class="login-body">
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-username">用户名</label>
+                        <input type="text" id="login-username" autocomplete="username" required placeholder="请输入用户名">
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">密码</label>
+                        <input type="password" id="login-password" autocomplete="current-password" required placeholder="请输入密码">
+                    </div>
+                    <div class="login-actions">
+                        <button type="submit" class="btn btn-primary" style="flex:1; min-width: 120px;">
+                            <i class="fas fa-right-to-bracket"></i> 登录
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="login-reset" style="min-width: 110px;">
+                            <i class="fas fa-rotate"></i> 清空
+                        </button>
+                    </div>
+                    <div class="alert alert-danger login-error" id="login-error">
+                        <i class="fas fa-triangle-exclamation"></i>
+                        <div id="login-error-text">用户名或密码错误</div>
+                    </div>
+                    <div class="login-tip">
+                        <i class="fas fa-lock"></i> 登录状态将保存在本机浏览器中（localStorage）。
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="app-container">
         <header>
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <div>
@@ -1042,6 +1297,10 @@
                 <div class="system-status">
                     <i class="fas fa-circle"></i> 系统运行中
                 </div>
+
+                <button class="logout-btn" id="logout-btn" type="button" title="退出登录">
+                    <i class="fas fa-right-from-bracket"></i> 退出
+                </button>
             </div>
         </header>
         
@@ -1318,17 +1577,20 @@
                         </div>
                         
                         <!-- 新增：Excel导出按钮组 -->
-                        <div class="excel-export-section">
-                            <h4><i class="fas fa-file-excel"></i> Excel导出</h4>
-                            <p>导出当前筛选条件下的犬只数据到Excel文件</p>
-                            <div class="excel-export-buttons">
-                                <button class="excel-export-btn" id="export-excel-current">
+                        <div class="excel-import-export-section">
+                            <h4><i class="fas fa-file-excel"></i> Excel导入导出</h4>
+                            <p>导入Excel数据或导出当前筛选条件下的犬只数据到Excel文件</p>
+                            <div class="excel-buttons">
+                                <button class="excel-btn" id="import-excel-dogs">
+                                    <i class="fas fa-file-import"></i> 从Excel导入
+                                </button>
+                                <button class="excel-btn" id="export-excel-current">
                                     <i class="fas fa-download"></i> 导出当前列表
                                 </button>
-                                <button class="excel-export-btn" id="export-excel-all">
+                                <button class="excel-btn" id="export-excel-all">
                                     <i class="fas fa-database"></i> 导出全部犬只
                                 </button>
-                                <button class="excel-export-btn" id="export-excel-detailed">
+                                <button class="excel-btn" id="export-excel-detailed">
                                     <i class="fas fa-file-alt"></i> 导出详细数据
                                 </button>
                             </div>
@@ -1829,6 +2091,62 @@
                 <div id="data-management" class="content-section">
                     <h2 class="page-title"><i class="fas fa-database"></i> 数据管理</h2>
                     
+                    <!-- 新增：Excel批量导入犬只信息 -->
+                    <div class="card">
+                        <h3><i class="fas fa-file-import"></i> Excel批量导入犬只信息</h3>
+                        <p>通过Excel文件批量导入犬只信息到系统。支持更新已有犬只信息。</p>
+                        
+                        <div class="excel-import-container">
+                            <h4><i class="fas fa-upload"></i> 导入Excel文件</h4>
+                            
+                            <div class="form-group">
+                                <label for="excel-import-file">选择Excel文件 *</label>
+                                <div class="import-file-input" id="excel-import-area">
+                                    <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; margin-bottom: 1rem; color: var(--primary-color);"></i>
+                                    <p style="margin-bottom: 0.5rem;">点击选择文件或拖拽文件到此处</p>
+                                    <p style="font-size: 0.85rem; color: var(--text-secondary);">支持.xlsx、.xls、.csv格式</p>
+                                    <input type="file" id="excel-import-file" accept=".xlsx,.xls,.csv" style="display: none;">
+                                </div>
+                                <small style="color: #666;">请确保Excel文件符合模板格式要求</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>导入选项</label>
+                                <div class="import-options">
+                                    <div class="import-option">
+                                        <input type="checkbox" id="import-update-existing" checked>
+                                        <label for="import-update-existing">更新已存在的犬只信息（根据芯片ID或犬名+品种+出生日期匹配）</label>
+                                    </div>
+                                    <div class="import-option">
+                                        <input type="checkbox" id="import-skip-invalid" checked>
+                                        <label for="import-skip-invalid">跳过无效数据行（包含必填字段缺失的行）</label>
+                                    </div>
+                                    <div class="import-option">
+                                        <input type="checkbox" id="import-generate-id" checked>
+                                        <label for="import-generate-id">为没有芯片ID的犬只自动生成ID</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="button-group">
+                                <button class="btn btn-success" id="start-import-excel" disabled><i class="fas fa-play"></i> 开始导入</button>
+                                <button class="btn btn-info" id="download-template"><i class="fas fa-download"></i> 下载模板</button>
+                                <button class="btn btn-secondary" id="clear-import-preview"><i class="fas fa-trash"></i> 清除预览</button>
+                            </div>
+                        </div>
+                        
+                        <div id="excel-import-preview" style="display: none; margin-top: 1.5rem;">
+                            <h4><i class="fas fa-eye"></i> 数据预览</h4>
+                            <div class="import-preview">
+                                <!-- Excel数据预览将通过JavaScript动态生成 -->
+                            </div>
+                        </div>
+                        
+                        <div id="import-status-container" style="display: none;">
+                            <!-- 导入状态将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                    
                     <div class="card">
                         <h3><i class="fas fa-download"></i> 数据备份</h3>
                         <p>系统数据存储在您的浏览器本地，定期备份可防止数据丢失。</p>
@@ -1839,23 +2157,23 @@
                         </div>
                         
                         <!-- 新增：Excel导出选项 -->
-                        <div class="excel-export-section">
+                        <div class="excel-import-export-section">
                             <h4><i class="fas fa-file-excel"></i> Excel数据导出</h4>
                             <p>导出系统数据到Excel文件，方便数据分析和共享</p>
-                            <div class="excel-export-buttons">
-                                <button class="excel-export-btn" id="export-excel-complete">
+                            <div class="excel-buttons">
+                                <button class="excel-btn" id="export-excel-complete">
                                     <i class="fas fa-file-excel"></i> 导出完整数据
                                 </button>
-                                <button class="excel-export-btn" id="export-excel-breeds">
+                                <button class="excel-btn" id="export-excel-breeds">
                                     <i class="fas fa-paw"></i> 导出品种统计
                                 </button>
-                                <button class="excel-export-btn" id="export-excel-vaccinations">
+                                <button class="excel-btn" id="export-excel-vaccinations">
                                     <i class="fas fa-syringe"></i> 导出免疫记录
                                 </button>
-                                <button class="excel-export-btn" id="export-excel-breeding">
+                                <button class="excel-btn" id="export-excel-breeding">
                                     <i class="fas fa-baby"></i> 导出繁殖记录
                                 </button>
-                                <button class="excel-export-btn" id="export-excel-kennel">
+                                <button class="excel-btn" id="export-excel-kennel">
                                     <i class="fas fa-home"></i> 导出犬舍分布
                                 </button>
                             </div>
@@ -2015,6 +2333,19 @@
         </div>
     </div>
     
+    <!-- Excel导入结果模态框 -->
+    <div class="modal" id="import-result-modal">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header">
+                <h3><i class="fas fa-file-import"></i> Excel导入结果</h3>
+                <button class="modal-close" id="close-import-result">&times;</button>
+            </div>
+            <div class="modal-body" id="import-result-content">
+                <!-- 导入结果将通过JavaScript动态生成 -->
+            </div>
+        </div>
+    </div>
+    
     <script>
         // 警犬繁育管理系统核心逻辑
         document.addEventListener('DOMContentLoaded', function() {
@@ -2032,7 +2363,7 @@
                     reminderDays: 30,
                     autoBackup: false
                 },
-                version: '1.0.1' // 版本更新
+                version: '1.0.2' // 版本更新，添加Excel导入功能
             };
             
             // 新增：疫苗类型管理
@@ -2099,6 +2430,7 @@
                 renderVaccinationRecords();
                 setupEventListeners();
                 setupParentSearch();
+                setupExcelImport();
                 
                 // 显示欢迎消息
                 showAlert('欢迎使用警犬繁育管理系统！系统已就绪。', 'success');
@@ -3968,6 +4300,11 @@
                     if (motherResults) motherResults.style.display = 'none';
                 }
                 
+                // 如果是数据管理页面，初始化导入功能
+                if (sectionId === 'data-management') {
+                    initExcelImportUI();
+                }
+                
                 // 滚动到顶部
                 const contentArea = document.querySelector('.content-area');
                 if (contentArea) {
@@ -4204,326 +4541,1174 @@
                 reader.readAsText(file);
             }
             
-            // ==================== 新增功能函数 ====================
+            // ==================== 新增：Excel导入功能 ====================
             
-            // 快速添加雌性犬
-            function quickAddMother() {
-                const modal = document.getElementById('quick-add-mother-modal');
-                const form = document.getElementById('quick-add-mother-form');
+            // 设置Excel导入功能
+            function setupExcelImport() {
+                // 初始化导入界面
+                initExcelImportUI();
                 
-                // 显示模态框
-                modal.classList.add('active');
+                // 设置Excel导入按钮事件
+                const importExcelDogsBtn = document.getElementById('import-excel-dogs');
+                if (importExcelDogsBtn) {
+                    importExcelDogsBtn.addEventListener('click', function() {
+                        switchSection('data-management');
+                    });
+                }
+            }
+            
+            // 初始化Excel导入界面
+            function initExcelImportUI() {
+                const importArea = document.getElementById('excel-import-area');
+                const fileInput = document.getElementById('excel-import-file');
+                const startImportBtn = document.getElementById('start-import-excel');
+                const downloadTemplateBtn = document.getElementById('download-template');
+                const clearPreviewBtn = document.getElementById('clear-import-preview');
                 
-                // 设置默认出生日期为2年前
-                const defaultDate = new Date();
-                defaultDate.setFullYear(defaultDate.getFullYear() - 2);
-                document.getElementById('quick-mother-birthdate').value = defaultDate.toISOString().split('T')[0];
+                if (!importArea || !fileInput) return;
                 
-                // 表单提交处理
-                form.onsubmit = function(e) {
+                // 重置导入界面
+                resetExcelImportUI();
+                
+                // 文件拖放功能
+                importArea.addEventListener('dragover', function(e) {
                     e.preventDefault();
+                    this.classList.add('dragover');
+                });
+                
+                importArea.addEventListener('dragleave', function(e) {
+                    e.preventDefault();
+                    this.classList.remove('dragover');
+                });
+                
+                importArea.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    this.classList.remove('dragover');
                     
-                    const dogId = generateId('DOG');
-                    const now = new Date().toISOString().split('T')[0];
-                    
-                    const newDog = {
-                        id: dogId,
-                        name: document.getElementById('quick-mother-name').value,
-                        breed: document.getElementById('quick-mother-breed').value,
-                        gender: 'female',
-                        birthDate: document.getElementById('quick-mother-birthdate').value,
-                        color: document.getElementById('quick-mother-color').value || null,
-                        chipId: null,
-                        kennel: document.getElementById('quick-mother-kennel').value, // 新增：犬舍号
-                        kennelArea: '繁殖区', // 默认设为繁殖区
-                        origin: null,
-                        trainer: null,
-                        health: '健康',
-                        status: document.getElementById('quick-mother-status').value,
-                        notes: '快速添加的雌性犬',
-                        fatherId: null,
-                        fatherName: '',
-                        motherId: null,
-                        motherName: '',
-                        createdDate: now,
-                        updatedDate: now
-                    };
-                    
-                    system.dogs[dogId] = newDog;
-                    
-                    if (saveData()) {
-                        showAlert(`雌性犬 "${newDog.name}" 添加成功！`, 'success');
-                        
-                        // 更新选择框
-                        populateDogSelects();
-                        
-                        // 设置分娩记录中的雌性犬选择
-                        const birthFemaleSelect = document.getElementById('birth-female-id');
-                        if (birthFemaleSelect) {
-                            birthFemaleSelect.value = dogId;
+                    if (e.dataTransfer.files.length > 0) {
+                        const file = e.dataTransfer.files[0];
+                        if (isValidExcelFile(file)) {
+                            fileInput.files = e.dataTransfer.files;
+                            handleFileSelect(file);
+                        } else {
+                            showAlert('请选择有效的Excel文件(.xlsx, .xls, .csv)', 'warning');
                         }
+                    }
+                });
+                
+                // 点击导入区域触发文件选择
+                importArea.addEventListener('click', function() {
+                    fileInput.click();
+                });
+                
+                // 文件选择变化事件
+                fileInput.addEventListener('change', function(e) {
+                    if (this.files.length > 0) {
+                        const file = this.files[0];
+                        if (isValidExcelFile(file)) {
+                            handleFileSelect(file);
+                        } else {
+                            showAlert('请选择有效的Excel文件(.xlsx, .xls, .csv)', 'warning');
+                            this.value = '';
+                            resetExcelImportUI();
+                        }
+                    }
+                });
+                
+                // 开始导入按钮
+                startImportBtn.addEventListener('click', startExcelImport);
+                
+                // 下载模板按钮
+                downloadTemplateBtn.addEventListener('click', downloadExcelTemplate);
+                
+                // 清除预览按钮
+                clearPreviewBtn.addEventListener('click', resetExcelImportUI);
+            }
+            
+            // 重置Excel导入界面
+            function resetExcelImportUI() {
+                const fileInput = document.getElementById('excel-import-file');
+                const startImportBtn = document.getElementById('start-import-excel');
+                const previewContainer = document.getElementById('excel-import-preview');
+                const importStatusContainer = document.getElementById('import-status-container');
+                
+                if (fileInput) fileInput.value = '';
+                if (startImportBtn) startImportBtn.disabled = true;
+                if (previewContainer) previewContainer.style.display = 'none';
+                if (importStatusContainer) importStatusContainer.style.display = 'none';
+                
+                // 重置预览内容
+                const previewElement = document.querySelector('.import-preview');
+                if (previewElement) previewElement.innerHTML = '';
+            }
+            
+            // 验证文件类型
+            function isValidExcelFile(file) {
+                const validTypes = [
+                    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                    'application/vnd.ms-excel',
+                    'text/csv'
+                ];
+                const validExtensions = ['.xlsx', '.xls', '.csv'];
+                
+                const fileExtension = '.' + file.name.split('.').pop().toLowerCase();
+                
+                return validTypes.includes(file.type) || validExtensions.includes(fileExtension);
+            }
+            
+            // 处理文件选择
+            function handleFileSelect(file) {
+                const reader = new FileReader();
+                const startImportBtn = document.getElementById('start-import-excel');
+                
+                reader.onload = function(e) {
+                    try {
+                        const data = new Uint8Array(e.target.result);
+                        const workbook = XLSX.read(data, {type: 'array'});
                         
-                        // 关闭模态框
-                        modal.classList.remove('active');
-                        form.reset();
+                        // 获取第一个工作表
+                        const firstSheetName = workbook.SheetNames[0];
+                        const worksheet = workbook.Sheets[firstSheetName];
+                        
+                        // 转换为JSON数据
+                        const jsonData = XLSX.utils.sheet_to_json(worksheet, {
+                            header: 1, // 包含表头
+                            raw: false // 获取格式化后的值
+                        });
+                        
+                        // 显示数据预览
+                        showExcelPreview(jsonData);
+                        
+                        // 启用开始导入按钮
+                        startImportBtn.disabled = false;
+                        
+                        // 保存工作表数据到全局变量，供导入时使用
+                        window.excelWorksheet = worksheet;
+                        window.excelJsonData = jsonData;
+                        
+                    } catch (error) {
+                        console.error('读取Excel文件失败:', error);
+                        showAlert('读取Excel文件失败，请检查文件格式！', 'danger');
+                        resetExcelImportUI();
                     }
                 };
+                
+                reader.onerror = function() {
+                    showAlert('读取文件失败，请重试！', 'danger');
+                    resetExcelImportUI();
+                };
+                
+                reader.readAsArrayBuffer(file);
             }
             
-            // 更新母犬关联的幼犬列表
-            function updateMotherPuppyList(motherId, birthRecordId = null) {
-                const puppyList = document.getElementById('puppy-list');
-                const puppyContainer = document.getElementById('puppy-selection-container');
+            // 显示Excel数据预览
+            function showExcelPreview(data) {
+                const previewContainer = document.getElementById('excel-import-preview');
+                const previewElement = document.querySelector('.import-preview');
                 
-                if (!puppyList || !puppyContainer) return;
+                if (!previewContainer || !previewElement) return;
                 
-                puppyList.innerHTML = '';
-                
-                if (!motherId) {
-                    puppyContainer.style.display = 'none';
+                if (data.length === 0) {
+                    previewElement.innerHTML = '<p style="padding: 20px; text-align: center; color: #666;">Excel文件为空或无法读取</p>';
+                    previewContainer.style.display = 'block';
                     return;
                 }
                 
-                // 获取该母犬的分娩记录
-                let birthRecords = system.birthRecords.filter(record => record.dogId === motherId);
+                // 创建预览表格
+                let previewHTML = '<table style="width: 100%; border-collapse: collapse;">';
                 
-                // 如果指定了分娩记录ID，只显示该记录
-                if (birthRecordId) {
-                    birthRecords = birthRecords.filter(record => record.id === birthRecordId);
-                }
+                // 只显示前20行数据作为预览
+                const maxPreviewRows = Math.min(20, data.length);
                 
-                if (birthRecords.length === 0) {
-                    puppyList.innerHTML = '<p style="color: #666; text-align: center; padding: 20px;">该母犬暂无分娩记录</p>';
-                    puppyContainer.style.display = 'block';
-                    return;
-                }
-                
-                // 显示幼犬列表
-                birthRecords.forEach(record => {
-                    const recordHeader = document.createElement('div');
-                    recordHeader.style.padding = '10px';
-                    recordHeader.style.backgroundColor = '#f8f9fa';
-                    recordHeader.style.borderBottom = '1px solid #dee2e6';
-                    recordHeader.innerHTML = `<strong>分娩记录: ${record.date} (${record.puppyCount}只幼犬)</strong>`;
-                    puppyList.appendChild(recordHeader);
+                for (let i = 0; i < maxPreviewRows; i++) {
+                    previewHTML += '<tr>';
                     
-                    // 显示幼犬详细信息
-                    if (record.puppyDetails && record.puppyDetails.length > 0) {
-                        record.puppyDetails.forEach((puppy, index) => {
-                            const puppyOption = document.createElement('div');
-                            puppyOption.className = 'puppy-option';
-                            
-                            // 生成幼犬临时ID
-                            const puppyTempId = `puppy-${record.id}-${index}`;
-                            
-                            puppyOption.innerHTML = `
-                                <input type="checkbox" id="${puppyTempId}" value="${puppyTempId}" data-record-id="${record.id}" data-puppy-index="${index}">
-                                <div class="puppy-info">
-                                    <div class="puppy-name">幼犬 ${index + 1}</div>
-                                    <div class="puppy-details">
-                                        性别: ${puppy.gender === 'male' ? '雄' : '雌'} | 
-                                        毛色: ${puppy.color || '未知'} | 
-                                        体重: ${puppy.weight || '未知'}kg | 
-                                        健康: ${puppy.healthStatus || '未知'}
-                                    </div>
-                                </div>
-                            `;
-                            
-                            puppyList.appendChild(puppyOption);
-                        });
-                    } else {
-                        // 如果没有详细幼犬信息，显示简单计数
-                        for (let i = 0; i < record.puppyCount; i++) {
-                            const puppyOption = document.createElement('div');
-                            puppyOption.className = 'puppy-option';
-                            
-                            const puppyTempId = `puppy-${record.id}-${i}`;
-                            
-                            puppyOption.innerHTML = `
-                                <input type="checkbox" id="${puppyTempId}" value="${puppyTempId}" data-record-id="${record.id}" data-puppy-index="${i}">
-                                <div class="puppy-info">
-                                    <div class="puppy-name">幼犬 ${i + 1}</div>
-                                    <div class="puppy-details">性别未知</div>
-                                </div>
-                            `;
-                            
-                            puppyList.appendChild(puppyOption);
+                    // 处理每一行的数据
+                    const row = data[i];
+                    for (let j = 0; j < row.length; j++) {
+                        const cellValue = row[j] !== undefined && row[j] !== null ? row[j] : '';
+                        
+                        if (i === 0) {
+                            // 第一行是表头
+                            previewHTML += `<th style="padding: 8px; border: 1px solid #ddd; background-color: #f8f9fa; text-align: left;">${cellValue}</th>`;
+                        } else {
+                            // 数据行
+                            const cellClass = j === 0 ? 'font-weight-bold' : '';
+                            previewHTML += `<td style="padding: 8px; border: 1px solid #ddd; ${cellClass}">${cellValue}</td>`;
                         }
+                    }
+                    
+                    // 补充缺失的列
+                    if (row.length < data[0].length) {
+                        const missingCols = data[0].length - row.length;
+                        for (let k = 0; k < missingCols; k++) {
+                            previewHTML += i === 0 ? 
+                                '<th style="padding: 8px; border: 1px solid #ddd; background-color: #f8f9fa; text-align: left;"></th>' :
+                                '<td style="padding: 8px; border: 1px solid #ddd;"></td>';
+                        }
+                    }
+                    
+                    previewHTML += '</tr>';
+                }
+                
+                previewHTML += '</table>';
+                
+                // 显示总行数信息
+                if (data.length > maxPreviewRows) {
+                    previewHTML += `<div style="padding: 10px; text-align: center; background-color: #f8f9fa; border-top: 1px solid #ddd;">
+                        仅显示前 ${maxPreviewRows} 行，共 ${data.length - 1} 行数据
+                    </div>`;
+                }
+                
+                previewElement.innerHTML = previewHTML;
+                previewContainer.style.display = 'block';
+            }
+            
+            // 下载Excel模板
+            function downloadExcelTemplate() {
+                // 创建模板数据
+                const templateData = [
+                    // 表头行
+                    ['犬名', '芯片ID', '品种', '性别', '犬舍号', '犬舍区域', '出生日期', '父亲', '母亲', '毛色', '来源', '训导员', '健康状况', '当前状态', '备注'],
+                    // 示例数据行
+                    ['黑虎', 'CHIP-001', '德国牧羊犬', '雄性', 'A101', '训练区', '2021-05-10', '猎鹰', '小花', '黑背', '公安部昆明基地', '张三', '健康', '服役', '优秀搜索犬'],
+                    ['玫瑰', 'CHIP-002', '马里努阿犬', '雌性', 'B202', '繁殖区', '2020-08-15', '未知', '未知', '浅黄', '沈阳基地', '李四', '健康', '繁殖', '繁殖母犬'],
+                    ['雷霆', 'CHIP-003', '罗威纳犬', '雄性', 'A102', '训练区', '2022-03-15', '黑虎', '玫瑰', '黑色', '北京基地', '王五', '健康', '在训', '护卫犬']
+                ];
+                
+                // 创建工作簿
+                const wb = XLSX.utils.book_new();
+                const ws = XLSX.utils.aoa_to_sheet(templateData);
+                
+                // 设置列宽
+                const colWidths = [
+                    {wch: 15}, // 犬名
+                    {wch: 15}, // 芯片ID
+                    {wch: 15}, // 品种
+                    {wch: 10}, // 性别
+                    {wch: 10}, // 犬舍号
+                    {wch: 12}, // 犬舍区域
+                    {wch: 12}, // 出生日期
+                    {wch: 12}, // 父亲
+                    {wch: 12}, // 母亲
+                    {wch: 10}, // 毛色
+                    {wch: 20}, // 来源
+                    {wch: 12}, // 训导员
+                    {wch: 10}, // 健康状况
+                    {wch: 10}, // 当前状态
+                    {wch: 20}  // 备注
+                ];
+                ws['!cols'] = colWidths;
+                
+                // 添加工作表
+                XLSX.utils.book_append_sheet(wb, ws, '犬只信息模板');
+                
+                // 创建第二个工作表 - 填写说明
+                const instructions = [
+                    ['字段说明'],
+                    [''],
+                    ['犬名*', '犬只名称，必填'],
+                    ['芯片ID', '犬只芯片ID，可选，用于唯一标识'],
+                    ['品种*', '犬只品种，必填'],
+                    ['性别*', '雄性/雌性，必填'],
+                    ['犬舍号*', '犬舍编号，必填，如A101、B203等'],
+                    ['犬舍区域', '犬舍所在区域，可选'],
+                    ['出生日期*', 'YYYY-MM-DD格式，必填'],
+                    ['父亲', '父亲犬名或ID，可选'],
+                    ['母亲', '母亲犬名或ID，可选'],
+                    ['毛色', '毛色描述，可选'],
+                    ['来源', '犬只来源，可选'],
+                    ['训导员', '负责训导员，可选'],
+                    ['健康状况', '健康状况，可选'],
+                    ['当前状态', '在训/服役/繁殖/退役/休养，可选'],
+                    ['备注', '其他备注信息，可选'],
+                    [''],
+                    ['注意：带*的为必填字段']
+                ];
+                
+                const ws2 = XLSX.utils.aoa_to_sheet(instructions);
+                const colWidths2 = [
+                    {wch: 15},
+                    {wch: 40}
+                ];
+                ws2['!cols'] = colWidths2;
+                XLSX.utils.book_append_sheet(wb, ws2, '填写说明');
+                
+                // 生成并下载文件
+                XLSX.writeFile(wb, '警犬信息导入模板.xlsx');
+                
+                showAlert('模板下载成功！请按照模板格式填写数据。', 'success');
+            }
+            
+            // 开始导入Excel数据
+            function startExcelImport() {
+                const worksheet = window.excelWorksheet;
+                const jsonData = window.excelJsonData;
+                
+                if (!worksheet || !jsonData || jsonData.length <= 1) {
+                    showAlert('没有可导入的数据或数据格式错误！', 'warning');
+                    return;
+                }
+                
+                // 获取导入选项
+                const updateExisting = document.getElementById('import-update-existing').checked;
+                const skipInvalid = document.getElementById('import-skip-invalid').checked;
+                const generateId = document.getElementById('import-generate-id').checked;
+                
+                // 解析表头
+                const headers = jsonData[0].map(header => header ? header.toString().trim() : '');
+                
+                // 验证必填字段
+                const requiredFields = ['犬名', '品种', '性别', '犬舍号', '出生日期'];
+                const missingRequiredFields = requiredFields.filter(field => !headers.includes(field));
+                
+                if (missingRequiredFields.length > 0) {
+                    showAlert(`Excel文件缺少以下必填字段：${missingRequiredFields.join(', ')}`, 'danger');
+                    return;
+                }
+                
+                // 映射表头到字段名
+                const fieldMapping = {
+                    '犬名': 'name',
+                    '芯片ID': 'chipId',
+                    '品种': 'breed',
+                    '性别': 'gender',
+                    '犬舍号': 'kennel',
+                    '犬舍区域': 'kennelArea',
+                    '出生日期': 'birthDate',
+                    '父亲': 'fatherName',
+                    '母亲': 'motherName',
+                    '毛色': 'color',
+                    '来源': 'origin',
+                    '训导员': 'trainer',
+                    '健康状况': 'health',
+                    '当前状态': 'status',
+                    '备注': 'notes'
+                };
+                
+                // 处理数据行
+                const importResults = {
+                    total: 0,
+                    added: 0,
+                    updated: 0,
+                    skipped: 0,
+                    errors: [],
+                    addedDogs: [],
+                    updatedDogs: []
+                };
+                
+                // 从第二行开始（跳过表头）
+                for (let i = 1; i < jsonData.length; i++) {
+                    const row = jsonData[i];
+                    importResults.total++;
+                    
+                    try {
+                        // 创建犬只对象
+                        const dogData = {};
+                        
+                        // 填充数据
+                        headers.forEach((header, index) => {
+                            const fieldName = fieldMapping[header];
+                            if (fieldName && row[index] !== undefined) {
+                                let value = row[index];
+                                
+                                // 处理特殊字段
+                                if (fieldName === 'gender') {
+                                    // 标准化性别字段
+                                    if (typeof value === 'string') {
+                                        value = value.trim();
+                                        if (value === '雄性' || value === '公' || value === 'male') {
+                                            value = 'male';
+                                        } else if (value === '雌性' || value === '母' || value === 'female') {
+                                            value = 'female';
+                                        }
+                                    }
+                                } else if (fieldName === 'birthDate') {
+                                    // 处理日期格式
+                                    if (value instanceof Date) {
+                                        value = value.toISOString().split('T')[0];
+                                    } else if (typeof value === 'string') {
+                                        // 尝试解析各种日期格式
+                                        const date = new Date(value);
+                                        if (!isNaN(date.getTime())) {
+                                            value = date.toISOString().split('T')[0];
+                                        }
+                                    }
+                                }
+                                
+                                dogData[fieldName] = value;
+                            }
+                        });
+                        
+                        // 检查必填字段
+                        const missingFields = [];
+                        requiredFields.forEach(field => {
+                            const fieldName = fieldMapping[field];
+                            if (!dogData[fieldName] || dogData[fieldName].toString().trim() === '') {
+                                missingFields.push(field);
+                            }
+                        });
+                        
+                        if (missingFields.length > 0) {
+                            if (skipInvalid) {
+                                importResults.skipped++;
+                                importResults.errors.push(`第${i+1}行: 缺少必填字段: ${missingFields.join(', ')}`);
+                                return; // 跳过此行
+                            } else {
+                                throw new Error(`缺少必填字段: ${missingFields.join(', ')}`);
+                            }
+                        }
+                        
+                        // 处理父母信息
+                        if (dogData.fatherName) {
+                            // 尝试通过父亲名字查找父亲ID
+                            const fatherDog = Object.values(system.dogs).find(dog => 
+                                dog.name === dogData.fatherName || 
+                                (dog.chipId && dog.chipId === dogData.fatherName)
+                            );
+                            
+                            if (fatherDog) {
+                                dogData.fatherId = fatherDog.id;
+                            } else {
+                                dogData.fatherId = null;
+                            }
+                        }
+                        
+                        if (dogData.motherName) {
+                            // 尝试通过母亲名字查找母亲ID
+                            const motherDog = Object.values(system.dogs).find(dog => 
+                                dog.name === dogData.motherName || 
+                                (dog.chipId && dog.chipId === dogData.motherName)
+                            );
+                            
+                            if (motherDog) {
+                                dogData.motherId = motherDog.id;
+                            } else {
+                                dogData.motherId = null;
+                            }
+                        }
+                        
+                        // 生成或获取ID
+                        let dogId = null;
+                        let isNew = true;
+                        
+                        // 如果有芯片ID，尝试通过芯片ID查找
+                        if (dogData.chipId && dogData.chipId.toString().trim() !== '') {
+                            const existingDog = Object.values(system.dogs).find(dog => 
+                                dog.chipId && dog.chipId.toString() === dogData.chipId.toString()
+                            );
+                            
+                            if (existingDog) {
+                                dogId = existingDog.id;
+                                isNew = false;
+                            }
+                        }
+                        
+                        // 如果没有芯片ID或未找到，通过犬名+品种+出生日期查找
+                        if (!dogId) {
+                            const existingDog = Object.values(system.dogs).find(dog => 
+                                dog.name === dogData.name &&
+                                dog.breed === dogData.breed &&
+                                dog.birthDate === dogData.birthDate
+                            );
+                            
+                            if (existingDog) {
+                                dogId = existingDog.id;
+                                isNew = false;
+                            }
+                        }
+                        
+                        const now = new Date().toISOString().split('T')[0];
+                        
+                        if (isNew || !updateExisting) {
+                            // 新增犬只
+                            dogId = dogId || generateId('DOG');
+                            
+                            // 如果没有芯片ID但需要生成
+                            if (!dogData.chipId && generateId) {
+                                dogData.chipId = `IMPORT-${Date.now().toString(36)}-${i}`;
+                            }
+                            
+                            const newDog = {
+                                id: dogId,
+                                ...dogData,
+                                createdDate: now,
+                                updatedDate: now
+                            };
+                            
+                            system.dogs[dogId] = newDog;
+                            importResults.added++;
+                            importResults.addedDogs.push(newDog.name);
+                            
+                        } else if (updateExisting) {
+                            // 更新现有犬只
+                            const existingDog = system.dogs[dogId];
+                            
+                            // 保留原有数据中可能没有的字段
+                            const updatedDog = {
+                                ...existingDog,
+                                ...dogData,
+                                updatedDate: now
+                            };
+                            
+                            system.dogs[dogId] = updatedDog;
+                            importResults.updated++;
+                            importResults.updatedDogs.push(updatedDog.name);
+                        }
+                        
+                    } catch (error) {
+                        importResults.skipped++;
+                        importResults.errors.push(`第${i+1}行: ${error.message}`);
+                    }
+                }
+                
+                // 保存数据
+                if (saveData()) {
+                    // 显示导入结果
+                    showImportResults(importResults);
+                    
+                    // 更新界面
+                    updateDashboard();
+                    populateDogSelects();
+                    renderDogList();
+                    
+                    // 重置导入界面
+                    resetExcelImportUI();
+                }
+            }
+            
+            // 显示导入结果
+            function showImportResults(results) {
+                const modal = document.getElementById('import-result-modal');
+                const content = document.getElementById('import-result-content');
+                
+                if (!modal || !content) return;
+                
+                let resultHTML = `
+                    <div class="import-summary">
+                        <h5><i class="fas fa-check-circle import-success"></i> 导入完成</h5>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="background: #f0f9ff; padding: 1rem; border-radius: 8px; text-align: center;">
+                                <div style="font-size: 2rem; font-weight: bold; color: var(--primary-color);">${results.total}</div>
+                                <div>总数据行</div>
+                            </div>
+                            <div style="background: #f0fdf4; padding: 1rem; border-radius: 8px; text-align: center;">
+                                <div style="font-size: 2rem; font-weight: bold; color: var(--success-color);">${results.added}</div>
+                                <div>新增犬只</div>
+                            </div>
+                            <div style="background: #fef3c7; padding: 1rem; border-radius: 8px; text-align: center;">
+                                <div style="font-size: 2rem; font-weight: bold; color: var(--warning-color);">${results.updated}</div>
+                                <div>更新犬只</div>
+                            </div>
+                            <div style="background: #fef2f2; padding: 1rem; border-radius: 8px; text-align: center;">
+                                <div style="font-size: 2rem; font-weight: bold; color: var(--danger-color);">${results.skipped}</div>
+                                <div>跳过行数</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // 显示新增和更新的犬只
+                if (results.addedDogs.length > 0) {
+                    resultHTML += `
+                        <div class="import-summary">
+                            <h5><i class="fas fa-plus-circle import-success"></i> 新增犬只 (${results.addedDogs.length}只)</h5>
+                            <p style="color: #666; margin-bottom: 0.5rem;">${results.addedDogs.join(', ')}</p>
+                        </div>
+                    `;
+                }
+                
+                if (results.updatedDogs.length > 0) {
+                    resultHTML += `
+                        <div class="import-summary">
+                            <h5><i class="fas fa-sync-alt import-warning"></i> 更新犬只 (${results.updatedDogs.length}只)</h5>
+                            <p style="color: #666; margin-bottom: 0.5rem;">${results.updatedDogs.join(', ')}</p>
+                        </div>
+                    `;
+                }
+                
+                // 显示错误信息
+                if (results.errors.length > 0) {
+                    resultHTML += `
+                        <div class="import-summary">
+                            <h5><i class="fas fa-exclamation-triangle import-error"></i> 错误信息 (${results.errors.length}个)</h5>
+                            <div style="max-height: 200px; overflow-y: auto;">
+                                <ul style="padding-left: 1.5rem;">
+                                    ${results.errors.map(error => `<li style="margin-bottom: 0.5rem; color: #666;">${error}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                resultHTML += `
+                    <div class="button-group" style="margin-top: 1.5rem; justify-content: center;">
+                        <button class="btn btn-success" id="view-imported-dogs"><i class="fas fa-list"></i> 查看导入的犬只</button>
+                        <button class="btn btn-info" id="close-import-result-btn"><i class="fas fa-times"></i> 关闭</button>
+                    </div>
+                `;
+                
+                content.innerHTML = resultHTML;
+                modal.classList.add('active');
+                
+                // 添加事件监听器
+                const viewImportedBtn = document.getElementById('view-imported-dogs');
+                const closeResultBtn = document.getElementById('close-import-result-btn');
+                const closeImportResultBtn = document.getElementById('close-import-result');
+                
+                if (viewImportedBtn) {
+                    viewImportedBtn.addEventListener('click', function() {
+                        modal.classList.remove('active');
+                        switchSection('view-dogs');
+                    });
+                }
+                
+                if (closeResultBtn) {
+                    closeResultBtn.addEventListener('click', function() {
+                        modal.classList.remove('active');
+                    });
+                }
+                
+                if (closeImportResultBtn) {
+                    closeImportResultBtn.addEventListener('click', function() {
+                        modal.classList.remove('active');
+                    });
+                }
+            }
+            
+            // ==================== 新增：Excel导出功能 ====================
+            
+            // 修复Excel导出功能
+            function setupExcelExport() {
+                // 导出当前列表
+                const exportExcelCurrentBtn = document.getElementById('export-excel-current');
+                if (exportExcelCurrentBtn) {
+                    exportExcelCurrentBtn.addEventListener('click', exportCurrentDogsToExcel);
+                }
+                
+                // 导出全部犬只
+                const exportExcelAllBtn = document.getElementById('export-excel-all');
+                if (exportExcelAllBtn) {
+                    exportExcelAllBtn.addEventListener('click', exportAllDogsToExcel);
+                }
+                
+                // 导出详细数据
+                const exportExcelDetailedBtn = document.getElementById('export-excel-detailed');
+                if (exportExcelDetailedBtn) {
+                    exportExcelDetailedBtn.addEventListener('click', exportDetailedDogsToExcel);
+                }
+                
+                // 导出完整数据
+                const exportExcelCompleteBtn = document.getElementById('export-excel-complete');
+                if (exportExcelCompleteBtn) {
+                    exportExcelCompleteBtn.addEventListener('click', exportCompleteDataToExcel);
+                }
+                
+                // 导出品种统计
+                const exportExcelBreedsBtn = document.getElementById('export-excel-breeds');
+                if (exportExcelBreedsBtn) {
+                    exportExcelBreedsBtn.addEventListener('click', exportBreedsToExcel);
+                }
+                
+                // 导出免疫记录
+                const exportExcelVaccinationsBtn = document.getElementById('export-excel-vaccinations');
+                if (exportExcelVaccinationsBtn) {
+                    exportExcelVaccinationsBtn.addEventListener('click', exportVaccinationsToExcel);
+                }
+                
+                // 导出繁殖记录
+                const exportExcelBreedingBtn = document.getElementById('export-excel-breeding');
+                if (exportExcelBreedingBtn) {
+                    exportExcelBreedingBtn.addEventListener('click', exportBreedingToExcel);
+                }
+                
+                // 导出犬舍分布
+                const exportExcelKennelBtn = document.getElementById('export-excel-kennel');
+                if (exportExcelKennelBtn) {
+                    exportExcelKennelBtn.addEventListener('click', exportKennelToExcel);
+                }
+                
+                // 导出JSON数据
+                const exportDogsBtn = document.getElementById('export-dogs');
+                if (exportDogsBtn) {
+                    exportDogsBtn.addEventListener('click', exportDataAsJSON);
+                }
+            }
+            
+            // 导出当前筛选的犬只列表
+            function exportCurrentDogsToExcel() {
+                // 获取当前筛选条件
+                const searchTerm = document.getElementById('search-dogs').value;
+                const breedFilter = document.getElementById('filter-breed').value;
+                const genderFilter = document.getElementById('filter-gender').value;
+                const statusFilter = document.getElementById('filter-status').value;
+                const kennelFilter = document.getElementById('filter-kennel').value;
+                
+                // 筛选犬只
+                const filteredDogs = Object.values(system.dogs).filter(dog => {
+                    if (searchTerm) {
+                        const searchTermLower = searchTerm.toLowerCase();
+                        if (!(
+                            dog.name.toLowerCase().includes(searchTermLower) ||
+                            dog.breed.toLowerCase().includes(searchTermLower) ||
+                            (dog.trainer && dog.trainer.toLowerCase().includes(searchTermLower)) ||
+                            (dog.chipId && dog.chipId.toLowerCase().includes(searchTermLower)) ||
+                            (dog.kennel && dog.kennel.toLowerCase().includes(searchTermLower))
+                        )) {
+                            return false;
+                        }
+                    }
+                    
+                    if (breedFilter && dog.breed !== breedFilter) {
+                        return false;
+                    }
+                    
+                    if (genderFilter && dog.gender !== genderFilter) {
+                        return false;
+                    }
+                    
+                    if (statusFilter && dog.status !== statusFilter) {
+                        return false;
+                    }
+                    
+                    if (kennelFilter && dog.kennel !== kennelFilter) {
+                        return false;
+                    }
+                    
+                    return true;
+                });
+                
+                if (filteredDogs.length === 0) {
+                    showAlert('没有可导出的数据！', 'warning');
+                    return;
+                }
+                
+                // 准备数据
+                const data = [
+                    ['犬名', '芯片ID', '品种', '性别', '犬舍号', '犬舍区域', '出生日期', '年龄', '父亲', '母亲', '毛色', '来源', '训导员', '健康状况', '当前状态', '备注']
+                ];
+                
+                filteredDogs.forEach(dog => {
+                    data.push([
+                        dog.name,
+                        dog.chipId || '',
+                        dog.breed,
+                        dog.gender === 'male' ? '雄性' : '雌性',
+                        dog.kennel || '',
+                        dog.kennelArea || '',
+                        dog.birthDate,
+                        calculateAge(dog.birthDate),
+                        dog.fatherName || '',
+                        dog.motherName || '',
+                        dog.color || '',
+                        dog.origin || '',
+                        dog.trainer || '',
+                        dog.health || '',
+                        dog.status || '',
+                        dog.notes || ''
+                    ]);
+                });
+                
+                // 导出Excel
+                exportToExcel(data, `警犬列表_${new Date().toISOString().split('T')[0]}.xlsx`);
+                showAlert(`成功导出 ${filteredDogs.length} 条犬只记录！`, 'success');
+            }
+            
+            // 导出全部犬只
+            function exportAllDogsToExcel() {
+                const dogs = Object.values(system.dogs);
+                
+                if (dogs.length === 0) {
+                    showAlert('没有可导出的数据！', 'warning');
+                    return;
+                }
+                
+                // 准备数据
+                const data = [
+                    ['犬名', '芯片ID', '品种', '性别', '犬舍号', '犬舍区域', '出生日期', '年龄', '父亲', '母亲', '毛色', '来源', '训导员', '健康状况', '当前状态', '备注']
+                ];
+                
+                dogs.forEach(dog => {
+                    data.push([
+                        dog.name,
+                        dog.chipId || '',
+                        dog.breed,
+                        dog.gender === 'male' ? '雄性' : '雌性',
+                        dog.kennel || '',
+                        dog.kennelArea || '',
+                        dog.birthDate,
+                        calculateAge(dog.birthDate),
+                        dog.fatherName || '',
+                        dog.motherName || '',
+                        dog.color || '',
+                        dog.origin || '',
+                        dog.trainer || '',
+                        dog.health || '',
+                        dog.status || '',
+                        dog.notes || ''
+                    ]);
+                });
+                
+                // 导出Excel
+                exportToExcel(data, `全部警犬_${new Date().toISOString().split('T')[0]}.xlsx`);
+                showAlert(`成功导出 ${dogs.length} 条犬只记录！`, 'success');
+            }
+            
+            // 导出详细数据
+            function exportDetailedDogsToExcel() {
+                const dogs = Object.values(system.dogs);
+                
+                if (dogs.length === 0) {
+                    showAlert('没有可导出的数据！', 'warning');
+                    return;
+                }
+                
+                // 准备数据 - 包含所有字段
+                const data = [
+                    ['犬名', '芯片ID', '品种', '性别', '犬舍号', '犬舍区域', '出生日期', '年龄', '父亲ID', '父亲名', '母亲ID', '母亲名', '毛色', '来源', '训导员', '健康状况', '当前状态', '备注', '创建日期', '最后更新']
+                ];
+                
+                dogs.forEach(dog => {
+                    data.push([
+                        dog.name,
+                        dog.chipId || '',
+                        dog.breed,
+                        dog.gender === 'male' ? '雄性' : '雌性',
+                        dog.kennel || '',
+                        dog.kennelArea || '',
+                        dog.birthDate,
+                        calculateAge(dog.birthDate),
+                        dog.fatherId || '',
+                        dog.fatherName || '',
+                        dog.motherId || '',
+                        dog.motherName || '',
+                        dog.color || '',
+                        dog.origin || '',
+                        dog.trainer || '',
+                        dog.health || '',
+                        dog.status || '',
+                        dog.notes || '',
+                        dog.createdDate || '',
+                        dog.updatedDate || ''
+                    ]);
+                });
+                
+                // 导出Excel
+                exportToExcel(data, `警犬详细数据_${new Date().toISOString().split('T')[0]}.xlsx`);
+                showAlert(`成功导出 ${dogs.length} 条详细犬只记录！`, 'success');
+            }
+            
+            // 导出完整数据
+            function exportCompleteDataToExcel() {
+                // 创建工作簿
+                const wb = XLSX.utils.book_new();
+                
+                // 1. 犬只信息表
+                const dogsData = [
+                    ['犬名', '芯片ID', '品种', '性别', '犬舍号', '犬舍区域', '出生日期', '年龄', '父亲', '母亲', '毛色', '来源', '训导员', '健康状况', '当前状态', '备注']
+                ];
+                
+                Object.values(system.dogs).forEach(dog => {
+                    dogsData.push([
+                        dog.name,
+                        dog.chipId || '',
+                        dog.breed,
+                        dog.gender === 'male' ? '雄性' : '雌性',
+                        dog.kennel || '',
+                        dog.kennelArea || '',
+                        dog.birthDate,
+                        calculateAge(dog.birthDate),
+                        dog.fatherName || '',
+                        dog.motherName || '',
+                        dog.color || '',
+                        dog.origin || '',
+                        dog.trainer || '',
+                        dog.health || '',
+                        dog.status || '',
+                        dog.notes || ''
+                    ]);
+                });
+                
+                const dogsWs = XLSX.utils.aoa_to_sheet(dogsData);
+                XLSX.utils.book_append_sheet(wb, dogsWs, '犬只信息');
+                
+                // 2. 发情记录表
+                if (system.heatRecords.length > 0) {
+                    const heatData = [
+                        ['犬名', '品种', '犬舍号', '发情日期', '记录日期', '备注']
+                    ];
+                    
+                    system.heatRecords.forEach(record => {
+                        const dog = system.dogs[record.dogId];
+                        if (dog) {
+                            heatData.push([
+                                dog.name,
+                                dog.breed,
+                                dog.kennel || '',
+                                record.date,
+                                record.recordedDate,
+                                record.notes || ''
+                            ]);
+                        }
+                    });
+                    
+                    const heatWs = XLSX.utils.aoa_to_sheet(heatData);
+                    XLSX.utils.book_append_sheet(wb, heatWs, '发情记录');
+                }
+                
+                // 3. 配种记录表
+                if (system.breedingRecords.length > 0) {
+                    const breedingData = [
+                        ['雌性犬', '犬舍号', '雄性犬', '犬舍号', '配种日期', '预产期', '第一次影像检查', '结果', '第二次影像检查', '结果', '检查备注', '状态', '备注']
+                    ];
+                    
+                    system.breedingRecords.forEach(record => {
+                        const femaleDog = system.dogs[record.femaleId];
+                        const maleDog = system.dogs[record.maleId];
+                        if (femaleDog && maleDog) {
+                            breedingData.push([
+                                femaleDog.name,
+                                femaleDog.kennel || '',
+                                maleDog.name,
+                                maleDog.kennel || '',
+                                record.date,
+                                record.expectedDate || '',
+                                record.check1Date || '',
+                                record.check1Result || '',
+                                record.check2Date || '',
+                                record.check2Result || '',
+                                record.checkNotes || '',
+                                record.status === 'pregnant' ? '怀孕中' : 
+                                record.status === 'delivered' ? '已分娩' : 
+                                record.status === 'cancelled' ? '已取消' : '未知',
+                                record.notes || ''
+                            ]);
+                        }
+                    });
+                    
+                    const breedingWs = XLSX.utils.aoa_to_sheet(breedingData);
+                    XLSX.utils.book_append_sheet(wb, breedingWs, '配种记录');
+                }
+                
+                // 4. 免疫记录表
+                if (system.vaccinationRecords.length > 0) {
+                    const vaccinationData = [
+                        ['犬名', '犬舍号', '疫苗类型', '免疫日期', '下次免疫日期', '备注']
+                    ];
+                    
+                    system.vaccinationRecords.forEach(record => {
+                        const dog = system.dogs[record.dogId];
+                        if (dog) {
+                            vaccinationData.push([
+                                dog.name,
+                                dog.kennel || '',
+                                record.type,
+                                record.date,
+                                record.nextDate || '',
+                                record.notes || ''
+                            ]);
+                        }
+                    });
+                    
+                    const vaccinationWs = XLSX.utils.aoa_to_sheet(vaccinationData);
+                    XLSX.utils.book_append_sheet(wb, vaccinationWs, '免疫记录');
+                }
+                
+                // 5. 系统统计表
+                const statsData = [
+                    ['统计项目', '数量'],
+                    ['总犬只数', Object.keys(system.dogs).length],
+                    ['雄性犬', Object.values(system.dogs).filter(dog => dog.gender === 'male').length],
+                    ['雌性犬', Object.values(system.dogs).filter(dog => dog.gender === 'female').length],
+                    ['怀孕犬只', system.breedingRecords.filter(record => record.status === 'pregnant').length],
+                    ['发情记录数', system.heatRecords.length],
+                    ['配种记录数', system.breedingRecords.length],
+                    ['免疫记录数', system.vaccinationRecords.length],
+                    ['数据版本', system.version],
+                    ['导出日期', new Date().toLocaleString('zh-CN')]
+                ];
+                
+                const statsWs = XLSX.utils.aoa_to_sheet(statsData);
+                XLSX.utils.book_append_sheet(wb, statsWs, '系统统计');
+                
+                // 导出Excel文件
+                XLSX.writeFile(wb, `警犬繁育管理系统完整数据_${new Date().toISOString().split('T')[0]}.xlsx`);
+                showAlert('完整数据导出成功！', 'success');
+            }
+            
+            // 导出品种统计
+            function exportBreedsToExcel() {
+                // 统计品种数量
+                const breedStats = {};
+                Object.values(system.dogs).forEach(dog => {
+                    breedStats[dog.breed] = (breedStats[dog.breed] || 0) + 1;
+                });
+                
+                // 准备数据
+                const data = [
+                    ['品种', '数量', '占比']
+                ];
+                
+                const totalDogs = Object.keys(system.dogs).length;
+                Object.entries(breedStats).forEach(([breed, count]) => {
+                    const percentage = totalDogs > 0 ? ((count / totalDogs) * 100).toFixed(2) + '%' : '0%';
+                    data.push([breed, count, percentage]);
+                });
+                
+                // 添加总计行
+                data.push(['总计', totalDogs, '100%']);
+                
+                // 导出Excel
+                exportToExcel(data, `警犬品种统计_${new Date().toISOString().split('T')[0]}.xlsx`);
+                showAlert('品种统计导出成功！', 'success');
+            }
+            
+            // 导出免疫记录
+            function exportVaccinationsToExcel() {
+                if (system.vaccinationRecords.length === 0) {
+                    showAlert('没有免疫记录可导出！', 'warning');
+                    return;
+                }
+                
+                // 准备数据
+                const data = [
+                    ['犬名', '品种', '犬舍号', '疫苗类型', '免疫日期', '下次免疫日期', '剩余天数', '备注']
+                ];
+                
+                const today = new Date();
+                
+                system.vaccinationRecords.forEach(record => {
+                    const dog = system.dogs[record.dogId];
+                    if (dog) {
+                        // 计算剩余天数
+                        let daysRemaining = '-';
+                        if (record.nextDate) {
+                            const nextDate = new Date(record.nextDate);
+                            const diffTime = nextDate - today;
+                            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                            
+                            if (diffDays >= 0) {
+                                daysRemaining = `${diffDays} 天`;
+                            } else {
+                                daysRemaining = `已过期 ${Math.abs(diffDays)} 天`;
+                            }
+                        }
+                        
+                        data.push([
+                            dog.name,
+                            dog.breed,
+                            dog.kennel || '',
+                            record.type,
+                            record.date,
+                            record.nextDate || '',
+                            daysRemaining,
+                            record.notes || ''
+                        ]);
                     }
                 });
                 
-                puppyContainer.style.display = 'block';
+                // 导出Excel
+                exportToExcel(data, `免疫记录_${new Date().toISOString().split('T')[0]}.xlsx`);
+                showAlert(`成功导出 ${system.vaccinationRecords.length} 条免疫记录！`, 'success');
             }
             
-            // 为选中的幼犬创建免疫记录
-            function createVaccinationForPuppies(vaccineType, vaccineDate, nextDate, notes) {
-                const selectedPuppies = document.querySelectorAll('#puppy-list input[type="checkbox"]:checked');
-                
-                if (selectedPuppies.length === 0) {
-                    return false;
+            // 导出繁殖记录
+            function exportBreedingToExcel() {
+                if (system.breedingRecords.length === 0) {
+                    showAlert('没有繁殖记录可导出！', 'warning');
+                    return;
                 }
                 
-                selectedPuppies.forEach(puppyCheckbox => {
-                    const recordId = puppyCheckbox.dataset.recordId;
-                    const puppyIndex = parseInt(puppyCheckbox.dataset.puppyIndex);
+                // 准备数据
+                const data = [
+                    ['雌性犬', '品种', '犬舍号', '雄性犬', '品种', '犬舍号', '配种日期', '预产期', '第一次检查', '结果', '第二次检查', '结果', '状态', '备注']
+                ];
+                
+                system.breedingRecords.forEach(record => {
+                    const femaleDog = system.dogs[record.femaleId];
+                    const maleDog = system.dogs[record.maleId];
                     
-                    // 创建幼犬的临时犬只记录
-                    const birthRecord = system.birthRecords.find(r => r.id === recordId);
-                    if (!birthRecord) return;
-                    
-                    const motherDog = system.dogs[birthRecord.dogId];
-                    const puppyDetails = birthRecord.puppyDetails && birthRecord.puppyDetails[puppyIndex];
-                    
-                    // 生成幼犬ID
-                    const puppyId = generateId('PUPPY');
-                    
-                    // 创建幼犬记录
-                    const puppyDog = {
-                        id: puppyId,
-                        name: `${motherDog?.name || '母犬'}的幼犬-${puppyIndex + 1}`,
-                        breed: motherDog?.breed || '未知',
-                        gender: puppyDetails?.gender || 'unknown',
-                        birthDate: birthRecord.date,
-                        color: puppyDetails?.color || null,
-                        chipId: null,
-                        kennel: motherDog?.kennel ? `${motherDog.kennel}-幼${puppyIndex + 1}` : null, // 新增：基于母犬犬舍号生成幼犬犬舍号
-                        kennelArea: '幼犬区', // 新增：默认设为幼犬区
-                        origin: motherDog?.origin || null,
-                        trainer: null,
-                        health: puppyDetails?.healthStatus || '良好',
-                        status: '幼犬',
-                        notes: `母犬: ${motherDog?.name || '未知'} | 分娩日期: ${birthRecord.date}`,
-                        fatherId: null,
-                        fatherName: '未知',
-                        motherId: motherDog?.id || null,
-                        motherName: motherDog?.name || '未知',
-                        createdDate: new Date().toISOString().split('T')[0],
-                        updatedDate: new Date().toISOString().split('T')[0]
-                    };
-                    
-                    // 添加到系统
-                    system.dogs[puppyId] = puppyDog;
-                    
-                    // 创建免疫记录
-                    const vaccinationId = generateId('VACC');
-                    const now = new Date().toISOString().split('T')[0];
-                    
-                    const newRecord = {
-                        id: vaccinationId,
-                        dogId: puppyId,
-                        type: vaccineType,
-                        date: vaccineDate,
-                        nextDate: nextDate,
-                        notes: `幼犬首次免疫 | ${notes || ''}`,
-                        recordedDate: now
-                    };
-                    
-                    system.vaccinationRecords.push(newRecord);
+                    if (femaleDog && maleDog) {
+                        const statusText = record.status === 'pregnant' ? '怀孕中' : 
+                                         record.status === 'delivered' ? '已分娩' : 
+                                         record.status === 'cancelled' ? '已取消' : '未知';
+                        
+                        data.push([
+                            femaleDog.name,
+                            femaleDog.breed,
+                            femaleDog.kennel || '',
+                            maleDog.name,
+                            maleDog.breed,
+                            maleDog.kennel || '',
+                            record.date,
+                            record.expectedDate || '',
+                            record.check1Date || '',
+                            record.check1Result || '',
+                            record.check2Date || '',
+                            record.check2Result || '',
+                            statusText,
+                            record.notes || ''
+                        ]);
+                    }
                 });
                 
-                return true;
+                // 导出Excel
+                exportToExcel(data, `繁殖记录_${new Date().toISOString().split('T')[0]}.xlsx`);
+                showAlert(`成功导出 ${system.breedingRecords.length} 条繁殖记录！`, 'success');
             }
             
-            // 生成统计报告
-            function generateReport(reportType, reportPeriod) {
-                const reportResults = document.getElementById('report-results');
-                reportResults.innerHTML = '';
-                
-                let reportHTML = '';
-                const today = new Date();
-                
-                // 根据报告类型生成不同的报告
-                switch(reportType) {
-                    case 'summary':
-                        reportHTML = generateSummaryReport(reportPeriod);
-                        break;
-                    case 'breed':
-                        reportHTML = generateBreedReport(reportPeriod);
-                        break;
-                    case 'kennel':
-                        reportHTML = generateKennelReport(reportPeriod);
-                        break;
-                    case 'breeding':
-                        reportHTML = generateBreedingReport(reportPeriod);
-                        break;
-                    case 'vaccination':
-                        reportHTML = generateVaccinationReport(reportPeriod);
-                        break;
-                    case 'health':
-                        reportHTML = generateHealthReport(reportPeriod);
-                        break;
-                    default:
-                        reportHTML = generateSummaryReport(reportPeriod);
-                }
-                
-                reportResults.innerHTML = reportHTML;
-            }
-            
-            // 生成犬舍分布报告
-            function generateKennelReport(reportPeriod) {
+            // 导出犬舍分布
+            function exportKennelToExcel() {
                 // 统计犬舍分布
                 const kennelStats = {};
                 Object.values(system.dogs).forEach(dog => {
-                    const kennel = dog.kennel || '未分配';
-                    if (!kennelStats[kennel]) {
-                        kennelStats[kennel] = {
-                            total: 0,
-                            male: 0,
-                            female: 0,
-                            breeds: {}
-                        };
+                    if (dog.kennel) {
+                        kennelStats[dog.kennel] = (kennelStats[dog.kennel] || 0) + 1;
                     }
-                    
-                    kennelStats[kennel].total++;
-                    if (dog.gender === 'male') kennelStats[kennel].male++;
-                    if (dog.gender === 'female') kennelStats[kennel].female++;
-                    
-                    // 统计品种
-                    const breed = dog.breed;
-                    if (!kennelStats[kennel].breeds[breed]) {
-                        kennelStats[kennel].breeds[breed] = 0;
-                    }
-                    kennelStats[kennel].breeds[breed]++;
                 });
                 
-                let html = '<h4>犬舍分布统计</h4>';
+                // 准备数据
+                const data = [
+                    ['犬舍号', '犬只数量', '犬只列表']
+                ];
                 
-                // 按犬舍排序
-                const kennels = Object.keys(kennelStats).sort();
-                
-                if (kennels.length === 0) {
-                    html += '<p>暂无犬舍数据</p>';
-                    return html;
-                }
-                
-                html += '<div style="overflow-x: auto;">';
-                html += '<table style="width: 100%; border-collapse: collapse; margin-top: 10px;">';
-                html += '<thead><tr style="background-color: #f8f9fa;">';
-                html += '<th style="padding: 10px; border: 1px solid #dee2e6;">犬舍号</th>';
-                html += '<th style="padding: 10px; border: 1px solid #dee2e6;">总犬只数</th>';
-                html += '<th style="padding: 10px; border: 1px solid #dee2e6;">雄性犬</th>';
-                html += '<th style="padding: 10px; border: 1px solid #dee2e6;">雌性犬</th>';
-                html += '<th style="padding: 10px; border: 1px solid #dee2e6;">品种分布</th>';
-                html += '</tr></thead><tbody>';
-                
-                kennels.forEach(kennel => {
-                    const stats = kennelStats[kennel];
-                    const breedList = Object.entries(stats.breeds)
-                        .map(([breed, count]) => `${breed}: ${count}`)
+                Object.entries(kennelStats).forEach(([kennel, count]) => {
+                    // 获取该犬舍的所有犬只
+                    const dogsInKennel = Object.values(system.dogs)
+                        .filter(dog => dog.kennel === kennel)
+                        .map(dog => dog.name)
                         .join(', ');
                     
-                    html += '<tr>';
-                    html += `<td style="padding: 10px; border: 1px solid #dee2e6;"><strong>${kennel}</strong></td>`;
-                    html += `<td style="padding: 10px; border: 1px solid #dee2e6;">${stats.total}</td>`;
-                    html += `<td style="padding: 10px; border: 1px solid #dee2e6;">${stats.male}</td>`;
-                    html += `<td style="padding: 10px; border: 1px solid #dee2e6;">${stats.female}</td>`;
-                    html += `<td style="padding: 10px; border: 1px solid #dee2e6;">${breedList || '无'}</td>`;
-                    html += '</tr>';
+                    data.push([kennel, count, dogsInKennel]);
                 });
                 
-                html += '</tbody></table></div>';
+                // 添加未分配犬舍的统计
+                const unassignedDogs = Object.values(system.dogs).filter(dog => !dog.kennel);
+                if (unassignedDogs.length > 0) {
+                    const unassignedNames = unassignedDogs.map(dog => dog.name).join(', ');
+                    data.push(['未分配', unassignedDogs.length, unassignedNames]);
+                }
                 
-                return html;
+                // 导出Excel
+                exportToExcel(data, `犬舍分布_${new Date().toISOString().split('T')[0]}.xlsx`);
+                showAlert('犬舍分布导出成功！', 'success');
+            }
+            
+            // 通用Excel导出函数
+            function exportToExcel(data, filename) {
+                // 创建工作簿和工作表
+                const wb = XLSX.utils.book_new();
+                const ws = XLSX.utils.aoa_to_sheet(data);
+                
+                // 设置列宽
+                const colWidths = data[0].map((_, index) => ({wch: 15}));
+                ws['!cols'] = colWidths;
+                
+                // 添加到工作簿
+                XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+                
+                // 导出文件
+                XLSX.writeFile(wb, filename);
             }
             
             // ==================== 设置事件监听器 ====================
@@ -5133,16 +6318,29 @@
                         
                         // 检查是否通过母犬选择了幼犬
                         const selectedPuppies = document.querySelectorAll('#puppy-list input[type="checkbox"]:checked');
-                        if (selectedPuppies.length > 0) {
-                            // 为选中的幼犬创建免疫记录
-                            const success = createVaccinationForPuppies(vaccineType, date, calculatedNextDate, notes);
-                            if (success) {
-                                recordsCreated = selectedPuppies.length;
-                            }
-                        }
                         
-                        // 如果也选择了单独的犬只，为其创建免疫记录
-                        if (dogId) {
+                        if (selectedPuppies.length > 0) {
+                            // 批量创建幼犬免疫记录
+                            selectedPuppies.forEach(checkbox => {
+                                const puppyDogId = checkbox.value;
+                                const recordId = generateId('VACC');
+                                const now = new Date().toISOString().split('T')[0];
+                                
+                                const newRecord = {
+                                    id: recordId,
+                                    dogId: puppyDogId,
+                                    type: vaccineType,
+                                    date: date,
+                                    nextDate: calculatedNextDate,
+                                    notes: notes || '',
+                                    recordedDate: now
+                                };
+                                
+                                system.vaccinationRecords.push(newRecord);
+                                recordsCreated++;
+                            });
+                        } else {
+                            // 创建单个犬只免疫记录
                             const recordId = generateId('VACC');
                             const now = new Date().toISOString().split('T')[0];
                             
@@ -5160,26 +6358,19 @@
                             recordsCreated++;
                         }
                         
-                        if (recordsCreated > 0) {
-                            if (saveData()) {
-                                showAlert(`成功创建 ${recordsCreated} 条免疫记录！`, 'success');
-                                renderVaccinationRecords();
-                                this.reset();
-                                
-                                // 重置手动输入疫苗类型容器
-                                document.getElementById('custom-vaccine-container').classList.remove('active');
-                                document.getElementById('custom-vaccine-name').value = '';
-                                
-                                // 重置母犬选择
-                                document.getElementById('mother-dog-select').value = '';
-                                document.getElementById('mother-birth-select').innerHTML = '<option value="">请先选择母犬</option>';
-                                document.getElementById('puppy-selection-container').style.display = 'none';
-                                document.getElementById('puppy-list').innerHTML = '';
-                                
-                                updateDashboard();
-                            }
-                        } else {
-                            showAlert('请选择犬只或通过母犬选择幼犬！', 'warning');
+                        if (saveData()) {
+                            showAlert(`成功添加 ${recordsCreated} 条免疫记录！`, 'success');
+                            renderVaccinationRecords();
+                            this.reset();
+                            
+                            // 清除母犬关联的选择
+                            document.getElementById('mother-dog-select').value = '';
+                            document.getElementById('mother-birth-select').innerHTML = '<option value="">请先选择母犬</option>';
+                            document.getElementById('puppy-selection-container').style.display = 'none';
+                            document.getElementById('puppy-list').innerHTML = '';
+                            document.getElementById('custom-vaccine-container').classList.remove('active');
+                            
+                            updateDashboard();
                         }
                     });
                 }
@@ -5189,43 +6380,23 @@
                 if (calculateNextVaccinationBtn) {
                     calculateNextVaccinationBtn.addEventListener('click', function() {
                         const vaccineDate = document.getElementById('vaccination-date').value;
-                        let vaccineType = document.getElementById('vaccination-type').value;
-                        const customVaccineName = document.getElementById('custom-vaccine-name').value.trim();
+                        const vaccineType = document.getElementById('vaccination-type').value;
                         
-                        // 如果选择了"其他"，则使用手动输入的疫苗类型
-                        if (vaccineType === '其他') {
-                            if (!customVaccineName) {
-                                showAlert('请输入疫苗类型名称！', 'warning');
-                                document.getElementById('custom-vaccine-name').focus();
-                                return;
-                            }
-                            vaccineType = customVaccineName;
-                        }
-                        
-                        if (vaccineDate && vaccineType) {
-                            const nextDate = calculateNextVaccinationDate(vaccineDate, vaccineType);
-                            document.getElementById('next-vaccination-date').value = nextDate;
-                        } else {
+                        if (!vaccineDate || !vaccineType) {
                             showAlert('请先选择免疫日期和疫苗类型！', 'warning');
+                            return;
                         }
+                        
+                        const nextDate = calculateNextVaccinationDate(vaccineDate, vaccineType);
+                        document.getElementById('next-vaccination-date').value = nextDate;
                     });
                 }
                 
-                // 疫苗日期变化时自动计算下次日期
+                // 免疫日期变化时自动计算下次日期
                 const vaccinationDateInput = document.getElementById('vaccination-date');
                 if (vaccinationDateInput) {
                     vaccinationDateInput.addEventListener('change', function() {
-                        let vaccineType = document.getElementById('vaccination-type').value;
-                        const customVaccineName = document.getElementById('custom-vaccine-name').value.trim();
-                        
-                        // 如果选择了"其他"，则使用手动输入的疫苗类型
-                        if (vaccineType === '其他') {
-                            if (!customVaccineName) {
-                                return; // 没有输入自定义疫苗类型，不计算
-                            }
-                            vaccineType = customVaccineName;
-                        }
-                        
+                        const vaccineType = document.getElementById('vaccination-type').value;
                         if (this.value && vaccineType && !document.getElementById('next-vaccination-date').value) {
                             const nextDate = calculateNextVaccinationDate(this.value, vaccineType);
                             document.getElementById('next-vaccination-date').value = nextDate;
@@ -5233,17 +6404,136 @@
                     });
                 }
                 
+                // 快速添加雌性犬函数
+                function quickAddMother() {
+                    const modal = document.getElementById('quick-add-mother-modal');
+                    const form = document.getElementById('quick-add-mother-form');
+                    
+                    // 显示模态框
+                    modal.classList.add('active');
+                    
+                    // 表单提交事件
+                    form.onsubmit = function(e) {
+                        e.preventDefault();
+                        
+                        const dogId = generateId('DOG');
+                        const now = new Date().toISOString().split('T')[0];
+                        
+                        const newDog = {
+                            id: dogId,
+                            name: document.getElementById('quick-mother-name').value,
+                            breed: document.getElementById('quick-mother-breed').value,
+                            gender: 'female',
+                            birthDate: document.getElementById('quick-mother-birthdate').value,
+                            color: document.getElementById('quick-mother-color').value || null,
+                            chipId: null,
+                            kennel: document.getElementById('quick-mother-kennel').value,
+                            kennelArea: '繁殖区',
+                            origin: '快速添加',
+                            trainer: null,
+                            health: '健康',
+                            status: document.getElementById('quick-mother-status').value,
+                            notes: '通过快速添加功能创建',
+                            fatherId: null,
+                            fatherName: '',
+                            motherId: null,
+                            motherName: '',
+                            createdDate: now,
+                            updatedDate: now
+                        };
+                        
+                        system.dogs[dogId] = newDog;
+                        
+                        if (saveData()) {
+                            showAlert(`雌性犬 "${newDog.name}" 添加成功！`, 'success');
+                            updateDashboard();
+                            populateDogSelects();
+                            renderDogList();
+                            
+                            // 设置分娩记录表单中的雌性犬选择
+                            document.getElementById('birth-female-id').value = dogId;
+                            
+                            // 关闭模态框
+                            modal.classList.remove('active');
+                            form.reset();
+                        }
+                    };
+                }
+                
+                // 更新母犬关联的幼犬列表
+                function updateMotherPuppyList(motherId, birthRecordId = null) {
+                    const puppyList = document.getElementById('puppy-list');
+                    const puppyContainer = document.getElementById('puppy-selection-container');
+                    
+                    if (!motherId) {
+                        puppyContainer.style.display = 'none';
+                        puppyList.innerHTML = '';
+                        return;
+                    }
+                    
+                    // 获取该母犬的所有幼犬
+                    let puppies = [];
+                    
+                    if (birthRecordId) {
+                        // 如果指定了分娩记录，只显示该次分娩的幼犬
+                        const birthRecord = system.birthRecords.find(r => r.id === birthRecordId);
+                        if (birthRecord && birthRecord.puppyDetails) {
+                            birthRecord.puppyDetails.forEach((puppy, index) => {
+                                puppies.push({
+                                    id: `PUPPY-${birthRecordId}-${index}`,
+                                    name: `幼犬 ${index + 1}`,
+                                    details: `${puppy.gender === 'male' ? '雄' : '雌'} | ${puppy.color || '未知毛色'} | ${puppy.weight || '未知体重'}kg`
+                                });
+                            });
+                        }
+                    } else {
+                        // 如果没有指定分娩记录，显示该母犬所有幼犬
+                        // 这里简化处理，实际应用中需要更复杂的逻辑
+                        const birthRecords = system.birthRecords.filter(record => record.dogId === motherId);
+                        birthRecords.forEach((record, recordIndex) => {
+                            if (record.puppyDetails) {
+                                record.puppyDetails.forEach((puppy, puppyIndex) => {
+                                    puppies.push({
+                                        id: `PUPPY-${record.id}-${puppyIndex}`,
+                                        name: `第${recordIndex + 1}胎幼犬 ${puppyIndex + 1}`,
+                                        details: `${puppy.gender === 'male' ? '雄' : '雌'} | ${puppy.color || '未知毛色'} | ${puppy.weight || '未知体重'}kg`
+                                    });
+                                });
+                            }
+                        });
+                    }
+                    
+                    if (puppies.length === 0) {
+                        puppyList.innerHTML = '<p style="padding: 20px; text-align: center; color: #666;">该母犬暂无幼犬记录</p>';
+                        puppyContainer.style.display = 'block';
+                        return;
+                    }
+                    
+                    // 清空并更新幼犬列表
+                    puppyList.innerHTML = '';
+                    
+                    puppies.forEach(puppy => {
+                        const puppyOption = document.createElement('div');
+                        puppyOption.className = 'puppy-option';
+                        puppyOption.innerHTML = `
+                            <input type="checkbox" value="${puppy.id}">
+                            <div class="puppy-info">
+                                <div class="puppy-name">${puppy.name}</div>
+                                <div class="puppy-details">${puppy.details}</div>
+                            </div>
+                        `;
+                        puppyList.appendChild(puppyOption);
+                    });
+                    
+                    puppyContainer.style.display = 'block';
+                }
+                
                 // 刷新统计按钮
                 const refreshStatsBtn = document.getElementById('refresh-stats');
                 if (refreshStatsBtn) {
-                    refreshStatsBtn.addEventListener('click', updateDashboard);
-                }
-                
-                // 快速添加犬只按钮
-                const quickAddDogBtn = document.getElementById('quick-add-dog');
-                if (quickAddDogBtn) {
-                    quickAddDogBtn.addEventListener('click', function() {
-                        switchSection('add-dog');
+                    refreshStatsBtn.addEventListener('click', function() {
+                        updateDashboard();
+                        showAlert('统计信息已刷新！', 'success');
                     });
                 }
                 
@@ -5255,29 +6545,21 @@
                     });
                 }
                 
-                // 生成统计报告按钮
-                const generateStatReportBtn = document.getElementById('generate-stat-report');
-                if (generateStatReportBtn) {
-                    generateStatReportBtn.addEventListener('click', function() {
-                        const reportType = document.getElementById('report-type').value;
-                        const reportPeriod = document.getElementById('report-period').value;
-                        
-                        generateReport(reportType, reportPeriod);
+                // 快速添加犬只按钮
+                const quickAddDogBtn = document.getElementById('quick-add-dog');
+                if (quickAddDogBtn) {
+                    quickAddDogBtn.addEventListener('click', function() {
+                        switchSection('add-dog');
                     });
-                }
-                
-                // 导出数据按钮
-                const exportDogsBtn = document.getElementById('export-dogs');
-                if (exportDogsBtn) {
-                    exportDogsBtn.addEventListener('click', exportDataAsJSON);
                 }
                 
                 // 备份数据按钮
                 const backupDataBtn = document.getElementById('backup-data');
                 if (backupDataBtn) {
                     backupDataBtn.addEventListener('click', function() {
-                        const backupKey = createBackup();
-                        showAlert(`数据备份成功！备份ID: ${backupKey}`, 'success');
+                        createBackup();
+                        showAlert('数据备份创建成功！', 'success');
+                        updateBackupList();
                     });
                 }
                 
@@ -5301,11 +6583,11 @@
                 const restoreBackupBtn = document.getElementById('restore-backup');
                 if (restoreBackupBtn) {
                     restoreBackupBtn.addEventListener('click', function() {
-                        const fileInput = document.getElementById('backup-file');
-                        if (fileInput.files.length > 0) {
-                            importDataFromJSON(fileInput.files[0]);
+                        const backupFile = document.getElementById('backup-file').files[0];
+                        if (backupFile) {
+                            importDataFromJSON(backupFile);
                         } else {
-                            showAlert('请先选择备份文件！', 'warning');
+                            showAlert('请选择备份文件！', 'warning');
                         }
                     });
                 }
@@ -5317,13 +6599,25 @@
                         showConfirmModal(
                             '确定要清空所有数据吗？此操作不可恢复！',
                             function() {
-                                localStorage.removeItem('dogBreedingSystem');
-                                showAlert('所有数据已清空！系统将重新加载。', 'success');
+                                // 清空所有数据
+                                system.dogs = {};
+                                system.heatRecords = [];
+                                system.breedingRecords = [];
+                                system.birthRecords = [];
+                                system.vaccinationRecords = [];
+                                system.dewormingRecords = [];
+                                system.puppySchedules = [];
                                 
-                                // 重新加载页面
-                                setTimeout(() => {
-                                    location.reload();
-                                }, 1500);
+                                if (saveData()) {
+                                    showAlert('所有数据已清空！', 'success');
+                                    updateDashboard();
+                                    populateDogSelects();
+                                    renderDogList();
+                                    renderHeatRecords();
+                                    renderBreedingRecords();
+                                    renderBirthRecords();
+                                    renderVaccinationRecords();
+                                }
                             }
                         );
                     });
@@ -5349,10 +6643,19 @@
                             autoBackup: false
                         };
                         saveSettings();
+                        showAlert('设置已恢复为默认值！', 'success');
                     });
                 }
                 
-                // 关闭模态框按钮
+                // 打印犬只列表按钮
+                const printDogsBtn = document.getElementById('print-dogs');
+                if (printDogsBtn) {
+                    printDogsBtn.addEventListener('click', function() {
+                        window.print();
+                    });
+                }
+                
+                // 关闭犬只详情模态框
                 const closeDogDetailBtn = document.getElementById('close-dog-detail');
                 if (closeDogDetailBtn) {
                     closeDogDetailBtn.addEventListener('click', function() {
@@ -5360,6 +6663,7 @@
                     });
                 }
                 
+                // 关闭确认模态框
                 const closeConfirmBtn = document.getElementById('close-confirm');
                 if (closeConfirmBtn) {
                     closeConfirmBtn.addEventListener('click', function() {
@@ -5367,718 +6671,118 @@
                     });
                 }
                 
-                // 点击模态框外部关闭
-                document.querySelectorAll('.modal').forEach(modal => {
-                    modal.addEventListener('click', function(e) {
-                        if (e.target === modal) {
-                            modal.classList.remove('active');
-                        }
-                    });
-                });
-                
-                // 初始化备份列表
-                updateBackupList();
-                
-                // ==================== Excel导出事件监听器 ====================
-                
-                // 查看犬只页面的导出按钮
-                const exportExcelCurrentBtn = document.getElementById('export-excel-current');
-                if (exportExcelCurrentBtn) {
-                    exportExcelCurrentBtn.addEventListener('click', function() {
-                        try {
-                            // 获取当前筛选条件
-                            const searchTerm = document.getElementById('search-dogs').value;
-                            const breedFilter = document.getElementById('filter-breed').value;
-                            const genderFilter = document.getElementById('filter-gender').value;
-                            const statusFilter = document.getElementById('filter-status').value;
-                            const kennelFilter = document.getElementById('filter-kennel').value;
-                            
-                            // 筛选犬只
-                            const filteredDogs = Object.values(system.dogs).filter(dog => {
-                                if (searchTerm) {
-                                    const term = searchTerm.toLowerCase();
-                                    if (!(
-                                        dog.name.toLowerCase().includes(term) ||
-                                        dog.breed.toLowerCase().includes(term) ||
-                                        (dog.trainer && dog.trainer.toLowerCase().includes(term)) ||
-                                        (dog.chipId && dog.chipId.toLowerCase().includes(term)) ||
-                                        (dog.kennel && dog.kennel.toLowerCase().includes(term)) || // 新增：犬舍号搜索
-                                        (dog.fatherName && dog.fatherName.toLowerCase().includes(term)) ||
-                                        (dog.motherName && dog.motherName.toLowerCase().includes(term))
-                                    )) {
-                                        return false;
-                                    }
-                                }
-                                
-                                if (breedFilter && dog.breed !== breedFilter) {
-                                    return false;
-                                }
-                                
-                                if (genderFilter && dog.gender !== genderFilter) {
-                                    return false;
-                                }
-                                
-                                if (statusFilter && dog.status !== statusFilter) {
-                                    return false;
-                                }
-                                
-                                if (kennelFilter && dog.kennel !== kennelFilter) {
-                                    return false;
-                                }
-                                
-                                return true;
-                            });
-                            
-                            if (filteredDogs.length === 0) {
-                                showAlert('当前筛选条件下没有犬只数据可导出！', 'warning');
-                                return;
-                            }
-                            
-                            // 准备Excel数据（包含父母信息和犬舍号）
-                            const excelData = filteredDogs.map(dog => {
-                                // 检查是否怀孕
-                                const isPregnant = system.breedingRecords.some(record => 
-                                    record.femaleId === dog.id && record.status === 'pregnant'
-                                );
-                                
-                                // 获取父母犬只对象
-                                const fatherDog = dog.fatherId ? system.dogs[dog.fatherId] : null;
-                                const motherDog = dog.motherId ? system.dogs[dog.motherId] : null;
-                                
-                                return {
-                                    '犬名': dog.name,
-                                    '芯片ID': dog.chipId || '',
-                                    '品种': dog.breed,
-                                    '性别': dog.gender === 'male' ? '雄性' : '雌性',
-                                    '犬舍号': dog.kennel || '',
-                                    '犬舍区域': dog.kennelArea || '',
-                                    '出生日期': dog.birthDate,
-                                    '年龄': calculateAge(dog.birthDate),
-                                    '父亲': fatherDog ? `${fatherDog.name} (${fatherDog.id})` : dog.fatherName || '',
-                                    '母亲': motherDog ? `${motherDog.name} (${motherDog.id})` : dog.motherName || '',
-                                    '毛色': dog.color || '',
-                                    '来源': dog.origin || '',
-                                    '训导员': dog.trainer || '',
-                                    '健康状况': dog.health || '',
-                                    '当前状态': dog.status || '',
-                                    '是否怀孕': isPregnant && dog.gender === 'female' ? '是' : '否',
-                                    '备注': dog.notes || '',
-                                    '创建日期': dog.createdDate || '',
-                                    '最后更新': dog.updatedDate || ''
-                                };
-                            });
-                            
-                            // 创建工作簿
-                            const wb = XLSX.utils.book_new();
-                            const ws = XLSX.utils.json_to_sheet(excelData);
-                            XLSX.utils.book_append_sheet(wb, ws, '犬只列表');
-                            
-                            // 生成Excel文件并下载
-                            XLSX.writeFile(wb, `警犬列表_${new Date().toISOString().split('T')[0]}.xlsx`);
-                            
-                            showAlert(`成功导出 ${filteredDogs.length} 条犬只记录到Excel！`, 'success');
-                        } catch (error) {
-                            console.error('导出Excel失败:', error);
-                            showAlert('导出Excel失败，请重试！', 'danger');
-                        }
+                // 关闭确认模态框的取消按钮
+                const confirmCancelBtn = document.getElementById('confirm-cancel');
+                if (confirmCancelBtn) {
+                    confirmCancelBtn.addEventListener('click', function() {
+                        document.getElementById('confirm-modal').classList.remove('active');
                     });
                 }
                 
-                const exportExcelAllBtn = document.getElementById('export-excel-all');
-                if (exportExcelAllBtn) {
-                    exportExcelAllBtn.addEventListener('click', function() {
-                        try {
-                            const allDogs = Object.values(system.dogs);
-                            
-                            if (allDogs.length === 0) {
-                                showAlert('系统中没有犬只数据可导出！', 'warning');
-                                return;
-                            }
-                            
-                            const excelData = allDogs.map(dog => {
-                                // 检查是否怀孕
-                                const isPregnant = system.breedingRecords.some(record => 
-                                    record.femaleId === dog.id && record.status === 'pregnant'
-                                );
-                                
-                                // 获取父母犬只对象
-                                const fatherDog = dog.fatherId ? system.dogs[dog.fatherId] : null;
-                                const motherDog = dog.motherId ? system.dogs[dog.motherId] : null;
-                                
-                                return {
-                                    '犬名': dog.name,
-                                    '芯片ID': dog.chipId || '',
-                                    '品种': dog.breed,
-                                    '性别': dog.gender === 'male' ? '雄性' : '雌性',
-                                    '犬舍号': dog.kennel || '',
-                                    '犬舍区域': dog.kennelArea || '',
-                                    '出生日期': dog.birthDate,
-                                    '年龄': calculateAge(dog.birthDate),
-                                    '父亲': fatherDog ? `${fatherDog.name} (${fatherDog.id})` : dog.fatherName || '',
-                                    '母亲': motherDog ? `${motherDog.name} (${motherDog.id})` : dog.motherName || '',
-                                    '毛色': dog.color || '',
-                                    '来源': dog.origin || '',
-                                    '训导员': dog.trainer || '',
-                                    '健康状况': dog.health || '',
-                                    '当前状态': dog.status || '',
-                                    '是否怀孕': isPregnant && dog.gender === 'female' ? '是' : '否',
-                                    '备注': dog.notes || '',
-                                    '创建日期': dog.createdDate || '',
-                                    '最后更新': dog.updatedDate || ''
-                                };
-                            });
-                            
-                            const wb = XLSX.utils.book_new();
-                            const ws = XLSX.utils.json_to_sheet(excelData);
-                            XLSX.utils.book_append_sheet(wb, ws, '全部犬只');
-                            XLSX.writeFile(wb, `全部警犬_${new Date().toISOString().split('T')[0]}.xlsx`);
-                            
-                            showAlert(`成功导出 ${allDogs.length} 条犬只记录到Excel！`, 'success');
-                        } catch (error) {
-                            console.error('导出Excel失败:', error);
-                            showAlert('导出Excel失败，请重试！', 'danger');
-                        }
-                    });
-                }
-                
-                const exportExcelDetailedBtn = document.getElementById('export-excel-detailed');
-                if (exportExcelDetailedBtn) {
-                    exportExcelDetailedBtn.addEventListener('click', function() {
-                        try {
-                            const allDogs = Object.values(system.dogs);
-                            
-                            if (allDogs.length === 0) {
-                                showAlert('系统中没有犬只数据可导出！', 'warning');
-                                return;
-                            }
-                            
-                            // 创建工作簿
-                            const wb = XLSX.utils.book_new();
-                            
-                            // 1. 犬只基本信息表（包含父母信息和犬舍号）
-                            const dogsData = allDogs.map(dog => {
-                                // 检查是否怀孕
-                                const isPregnant = system.breedingRecords.some(record => 
-                                    record.femaleId === dog.id && record.status === 'pregnant'
-                                );
-                                
-                                // 获取父母犬只对象
-                                const fatherDog = dog.fatherId ? system.dogs[dog.fatherId] : null;
-                                const motherDog = dog.motherId ? system.dogs[dog.motherId] : null;
-                                
-                                return {
-                                    '犬名': dog.name,
-                                    '芯片ID': dog.chipId || '',
-                                    '品种': dog.breed,
-                                    '性别': dog.gender === 'male' ? '雄性' : '雌性',
-                                    '犬舍号': dog.kennel || '',
-                                    '犬舍区域': dog.kennelArea || '',
-                                    '出生日期': dog.birthDate,
-                                    '年龄': calculateAge(dog.birthDate),
-                                    '父亲': fatherDog ? `${fatherDog.name} (${fatherDog.id})` : dog.fatherName || '',
-                                    '母亲': motherDog ? `${motherDog.name} (${motherDog.id})` : dog.motherName || '',
-                                    '毛色': dog.color || '',
-                                    '来源': dog.origin || '',
-                                    '训导员': dog.trainer || '',
-                                    '健康状况': dog.health || '',
-                                    '当前状态': dog.status || '',
-                                    '是否怀孕': isPregnant && dog.gender === 'female' ? '是' : '否',
-                                    '备注': dog.notes || '',
-                                    '创建日期': dog.createdDate || '',
-                                    '最后更新': dog.updatedDate || ''
-                                };
-                            });
-                            
-                            const dogsWs = XLSX.utils.json_to_sheet(dogsData);
-                            XLSX.utils.book_append_sheet(wb, dogsWs, '犬只基本信息');
-                            
-                            // 2. 免疫记录表
-                            if (system.vaccinationRecords.length > 0) {
-                                const vaccinationData = system.vaccinationRecords.map(record => {
-                                    const dog = system.dogs[record.dogId];
-                                    const isCustom = vaccineManager.isCustomVaccineType(record.type);
-                                    
-                                    return {
-                                        '犬名': dog?.name || '未知',
-                                        '犬舍号': dog?.kennel || '未知',
-                                        '疫苗类型': record.type,
-                                        '疫苗类别': isCustom ? '自定义' : '标准',
-                                        '免疫日期': record.date,
-                                        '下次免疫日期': record.nextDate || '',
-                                        '备注': record.notes || '',
-                                        '记录日期': record.recordedDate || ''
-                                    };
-                                });
-                                
-                                const vaccinationWs = XLSX.utils.json_to_sheet(vaccinationData);
-                                XLSX.utils.book_append_sheet(wb, vaccinationWs, '免疫记录');
-                            }
-                            
-                            // 3. 繁殖记录表（新增影像检查信息）
-                            if (system.breedingRecords.length > 0) {
-                                const breedingData = system.breedingRecords.map(record => {
-                                    const femaleDog = system.dogs[record.femaleId];
-                                    const maleDog = system.dogs[record.maleId];
-                                    
-                                    let statusText = '';
-                                    if (record.status === 'pregnant') statusText = '怀孕中';
-                                    else if (record.status === 'delivered') statusText = '已分娩';
-                                    else if (record.status === 'cancelled') statusText = '已取消';
-                                    
-                                    return {
-                                        '雌性犬': femaleDog?.name || '未知',
-                                        '雌性犬舍号': femaleDog?.kennel || '未知',
-                                        '雄性犬': maleDog?.name || '未知',
-                                        '雄性犬舍号': maleDog?.kennel || '未知',
-                                        '配种日期': record.date,
-                                        '预产期': record.expectedDate || '',
-                                        '第一次影像检查日期': record.check1Date || '',
-                                        '第一次影像检查结果': record.check1Result || '',
-                                        '第二次影像检查日期': record.check2Date || '',
-                                        '第二次影像检查结果': record.check2Result || '',
-                                        '影像检查备注': record.checkNotes || '',
-                                        '实际分娩日期': record.actualDate || '',
-                                        '幼犬数量': record.puppyCount || '',
-                                        '状态': statusText,
-                                        '配种备注': record.notes || '',
-                                        '记录日期': record.recordedDate || ''
-                                    };
-                                });
-                                
-                                const breedingWs = XLSX.utils.json_to_sheet(breedingData);
-                                XLSX.utils.book_append_sheet(wb, breedingWs, '繁殖记录');
-                            }
-                            
-                            // 4. 分娩记录表（包含幼犬预约信息）
-                            if (system.birthRecords.length > 0) {
-                                const birthData = system.birthRecords.map(record => {
-                                    const dog = system.dogs[record.dogId];
-                                    const schedule = system.puppySchedules.find(s => s.birthRecordId === record.id);
-                                    
-                                    return {
-                                        '雌性犬': dog?.name || '未知',
-                                        '犬舍号': dog?.kennel || '未知',
-                                        '分娩日期': record.date,
-                                        '幼犬数量': record.puppyCount,
-                                        '首次驱虫预约': schedule?.dewormDate || '未预约',
-                                        '首次免疫预约': schedule?.vaccineDate || '未预约',
-                                        '备注': record.notes || '',
-                                        '记录日期': record.recordedDate || ''
-                                    };
-                                });
-                                
-                                const birthWs = XLSX.utils.json_to_sheet(birthData);
-                                XLSX.utils.book_append_sheet(wb, birthWs, '分娩记录');
-                            }
-                            
-                            // 5. 发情记录表
-                            if (system.heatRecords.length > 0) {
-                                const heatData = system.heatRecords.map(record => {
-                                    const dog = system.dogs[record.dogId];
-                                    
-                                    return {
-                                        '犬名': dog?.name || '未知',
-                                        '犬舍号': dog?.kennel || '未知',
-                                        '发情日期': record.date,
-                                        '备注': record.notes || '',
-                                        '记录日期': record.recordedDate || ''
-                                    };
-                                });
-                                
-                                const heatWs = XLSX.utils.json_to_sheet(heatData);
-                                XLSX.utils.book_append_sheet(wb, heatWs, '发情记录');
-                            }
-                            
-                            // 6. 驱虫记录表
-                            if (system.dewormingRecords.length > 0) {
-                                const dewormingData = system.dewormingRecords.map(record => {
-                                    const dog = system.dogs[record.dogId];
-                                    
-                                    return {
-                                        '犬名': dog?.name || '未知',
-                                        '犬舍号': dog?.kennel || '未知',
-                                        '驱虫日期': record.date,
-                                        '下次驱虫日期': record.nextDate || '',
-                                        '备注': record.notes || '',
-                                        '记录日期': record.recordedDate || ''
-                                    };
-                                });
-                                
-                                const dewormingWs = XLSX.utils.json_to_sheet(dewormingData);
-                                XLSX.utils.book_append_sheet(wb, dewormingWs, '驱虫记录');
-                            }
-                            
-                            // 7. 幼犬预约记录表
-                            if (system.puppySchedules.length > 0) {
-                                const scheduleData = system.puppySchedules.map(schedule => {
-                                    const mother = system.dogs[schedule.motherId];
-                                    const birthRecord = system.birthRecords.find(r => r.id === schedule.birthRecordId);
-                                    
-                                    return {
-                                        '母犬': mother?.name || '未知',
-                                        '母犬犬舍号': mother?.kennel || '未知',
-                                        '分娩记录ID': schedule.birthRecordId,
-                                        '分娩日期': birthRecord?.date || '未知',
-                                        '首次驱虫预约': schedule.dewormDate || '未预约',
-                                        '首次免疫预约': schedule.vaccineDate || '未预约',
-                                        '备注': schedule.notes || '',
-                                        '记录日期': schedule.recordedDate || ''
-                                    };
-                                });
-                                
-                                const scheduleWs = XLSX.utils.json_to_sheet(scheduleData);
-                                XLSX.utils.book_append_sheet(wb, scheduleWs, '幼犬预约');
-                            }
-                            
-                            // 生成Excel文件并下载
-                            XLSX.writeFile(wb, `警犬详细数据_${new Date().toISOString().split('T')[0]}.xlsx`);
-                            
-                            showAlert(`成功导出详细数据到Excel，包含 ${allDogs.length} 条犬只记录！`, 'success');
-                        } catch (error) {
-                            console.error('导出详细Excel失败:', error);
-                            showAlert('导出详细Excel失败，请重试！', 'danger');
-                        }
-                    });
-                }
-                
-                // 数据管理页面的导出按钮
-                const exportExcelCompleteBtn = document.getElementById('export-excel-complete');
-                if (exportExcelCompleteBtn) {
-                    exportExcelCompleteBtn.addEventListener('click', function() {
-                        try {
-                            // 创建工作簿
-                            const wb = XLSX.utils.book_new();
-                            
-                            // 1. 系统概览表
-                            const totalDogs = Object.keys(system.dogs).length;
-                            const maleDogs = Object.values(system.dogs).filter(dog => dog.gender === 'male').length;
-                            const femaleDogs = Object.values(system.dogs).filter(dog => dog.gender === 'female').length;
-                            const pregnantDogs = system.breedingRecords.filter(record => 
-                                record.status === 'pregnant' && system.dogs[record.femaleId]
-                            ).length;
-                            
-                            const summaryData = [{
-                                '统计项目': '总犬只数',
-                                '数值': totalDogs,
-                                '备注': ''
-                            }, {
-                                '统计项目': '雄性犬',
-                                '数值': maleDogs,
-                                '备注': ''
-                            }, {
-                                '统计项目': '雌性犬',
-                                '数值': femaleDogs,
-                                '备注': ''
-                            }, {
-                                '统计项目': '怀孕犬只',
-                                '数值': pregnantDogs,
-                                '备注': ''
-                            }, {
-                                '统计项目': '发情记录数',
-                                '数值': system.heatRecords.length,
-                                '备注': ''
-                            }, {
-                                '统计项目': '配种记录数',
-                                '数值': system.breedingRecords.length,
-                                '备注': ''
-                            }, {
-                                '统计项目': '分娩记录数',
-                                '数值': system.birthRecords.length,
-                                '备注': ''
-                            }, {
-                                '统计项目': '免疫记录数',
-                                '数值': system.vaccinationRecords.length,
-                                '备注': ''
-                            }, {
-                                '统计项目': '驱虫记录数',
-                                '数值': system.dewormingRecords.length,
-                                '备注': ''
-                            }, {
-                                '统计项目': '幼犬预约数',
-                                '数值': system.puppySchedules.length,
-                                '备注': ''
-                            }];
-                            
-                            const summaryWs = XLSX.utils.json_to_sheet(summaryData);
-                            XLSX.utils.book_append_sheet(wb, summaryWs, '系统概览');
-                            
-                            // 2. 犬只基本信息表（包含父母信息和犬舍号）
-                            if (Object.values(system.dogs).length > 0) {
-                                const dogsData = Object.values(system.dogs).map(dog => {
-                                    // 检查是否怀孕
-                                    const isPregnant = system.breedingRecords.some(record => 
-                                        record.femaleId === dog.id && record.status === 'pregnant'
-                                    );
-                                    
-                                    // 获取父母犬只对象
-                                    const fatherDog = dog.fatherId ? system.dogs[dog.fatherId] : null;
-                                    const motherDog = dog.motherId ? system.dogs[dog.motherId] : null;
-                                    
-                                    return {
-                                        '犬名': dog.name,
-                                        '芯片ID': dog.chipId || '',
-                                        '品种': dog.breed,
-                                        '性别': dog.gender === 'male' ? '雄性' : '雌性',
-                                        '犬舍号': dog.kennel || '',
-                                        '犬舍区域': dog.kennelArea || '',
-                                        '出生日期': dog.birthDate,
-                                        '年龄': calculateAge(dog.birthDate),
-                                        '父亲': fatherDog ? `${fatherDog.name} (${fatherDog.id})` : dog.fatherName || '',
-                                        '母亲': motherDog ? `${motherDog.name} (${motherDog.id})` : dog.motherName || '',
-                                        '毛色': dog.color || '',
-                                        '来源': dog.origin || '',
-                                        '训导员': dog.trainer || '',
-                                        '健康状况': dog.health || '',
-                                        '当前状态': dog.status || '',
-                                        '是否怀孕': isPregnant && dog.gender === 'female' ? '是' : '否',
-                                        '备注': dog.notes || '',
-                                        '创建日期': dog.createdDate || '',
-                                        '最后更新': dog.updatedDate || ''
-                                    };
-                                });
-                                
-                                const dogsWs = XLSX.utils.json_to_sheet(dogsData);
-                                XLSX.utils.book_append_sheet(wb, dogsWs, '犬只信息');
-                            }
-                            
-                            // 3. 品种统计表
-                            const breedCounts = {};
-                            Object.values(system.dogs).forEach(dog => {
-                                breedCounts[dog.breed] = (breedCounts[dog.breed] || 0) + 1;
-                            });
-                            
-                            const breedData = Object.entries(breedCounts).map(([breed, count]) => ({
-                                '品种': breed,
-                                '数量': count,
-                                '占比': `${((count / totalDogs) * 100).toFixed(2)}%`
-                            }));
-                            
-                            if (breedData.length > 0) {
-                                const breedWs = XLSX.utils.json_to_sheet(breedData);
-                                XLSX.utils.book_append_sheet(wb, breedWs, '品种统计');
-                            }
-                            
-                            // 4. 犬舍统计表
-                            const kennelCounts = {};
-                            Object.values(system.dogs).forEach(dog => {
-                                const kennel = dog.kennel || '未分配';
-                                kennelCounts[kennel] = (kennelCounts[kennel] || 0) + 1;
-                            });
-                            
-                            const kennelData = Object.entries(kennelCounts).map(([kennel, count]) => ({
-                                '犬舍号': kennel,
-                                '犬只数量': count,
-                                '占比': `${((count / totalDogs) * 100).toFixed(2)}%`
-                            }));
-                            
-                            if (kennelData.length > 0) {
-                                const kennelWs = XLSX.utils.json_to_sheet(kennelData);
-                                XLSX.utils.book_append_sheet(wb, kennelWs, '犬舍统计');
-                            }
-                            
-                            // 5. 免疫记录表
-                            if (system.vaccinationRecords.length > 0) {
-                                const vaccinationData = system.vaccinationRecords.map(record => {
-                                    const dog = system.dogs[record.dogId];
-                                    const isCustom = vaccineManager.isCustomVaccineType(record.type);
-                                    
-                                    return {
-                                        '犬名': dog?.name || '未知',
-                                        '犬舍号': dog?.kennel || '未知',
-                                        '疫苗类型': record.type,
-                                        '疫苗类别': isCustom ? '自定义' : '标准',
-                                        '免疫日期': record.date,
-                                        '下次免疫日期': record.nextDate || '',
-                                        '备注': record.notes || '',
-                                        '记录日期': record.recordedDate || ''
-                                    };
-                                });
-                                
-                                const vaccinationWs = XLSX.utils.json_to_sheet(vaccinationData);
-                                XLSX.utils.book_append_sheet(wb, vaccinationWs, '免疫记录');
-                            }
-                            
-                            // 6. 繁殖记录表（包含影像检查信息）
-                            if (system.breedingRecords.length > 0) {
-                                const breedingData = system.breedingRecords.map(record => {
-                                    const femaleDog = system.dogs[record.femaleId];
-                                    const maleDog = system.dogs[record.maleId];
-                                    
-                                    let statusText = '';
-                                    if (record.status === 'pregnant') statusText = '怀孕中';
-                                    else if (record.status === 'delivered') statusText = '已分娩';
-                                    else if (record.status === 'cancelled') statusText = '已取消';
-                                    
-                                    return {
-                                        '雌性犬': femaleDog?.name || '未知',
-                                        '雌性犬舍号': femaleDog?.kennel || '未知',
-                                        '雄性犬': maleDog?.name || '未知',
-                                        '雄性犬舍号': maleDog?.kennel || '未知',
-                                        '配种日期': record.date,
-                                        '预产期': record.expectedDate || '',
-                                        '第一次影像检查日期': record.check1Date || '',
-                                        '第一次影像检查结果': record.check1Result || '',
-                                        '第二次影像检查日期': record.check2Date || '',
-                                        '第二次影像检查结果': record.check2Result || '',
-                                        '影像检查备注': record.checkNotes || '',
-                                        '实际分娩日期': record.actualDate || '',
-                                        '幼犬数量': record.puppyCount || '',
-                                        '状态': statusText,
-                                        '配种备注': record.notes || '',
-                                        '记录日期': record.recordedDate || ''
-                                    };
-                                });
-                                
-                                const breedingWs = XLSX.utils.json_to_sheet(breedingData);
-                                XLSX.utils.book_append_sheet(wb, breedingWs, '繁殖记录');
-                            }
-                            
-                            // 7. 分娩记录表
-                            if (system.birthRecords.length > 0) {
-                                const birthData = system.birthRecords.map(record => {
-                                    const dog = system.dogs[record.dogId];
-                                    const breedingRecord = system.breedingRecords.find(r => r.id === record.breedingId);
-                                    const schedule = system.puppySchedules.find(s => s.birthRecordId === record.id);
-                                    
-                                    return {
-                                        '雌性犬': dog?.name || '未知',
-                                        '犬舍号': dog?.kennel || '未知',
-                                        '分娩日期': record.date,
-                                        '幼犬数量': record.puppyCount,
-                                        '配种日期': breedingRecord ? breedingRecord.date : '',
-                                        '首次驱虫预约': schedule?.dewormDate || '未预约',
-                                        '首次免疫预约': schedule?.vaccineDate || '未预约',
-                                        '备注': record.notes || '',
-                                        '记录日期': record.recordedDate || ''
-                                    };
-                                });
-                                
-                                const birthWs = XLSX.utils.json_to_sheet(birthData);
-                                XLSX.utils.book_append_sheet(wb, birthWs, '分娩记录');
-                            }
-                            
-                            // 8. 发情记录表
-                            if (system.heatRecords.length > 0) {
-                                const heatData = system.heatRecords.map(record => {
-                                    const dog = system.dogs[record.dogId];
-                                    
-                                    return {
-                                        '犬名': dog?.name || '未知',
-                                        '犬舍号': dog?.kennel || '未知',
-                                        '发情日期': record.date,
-                                        '备注': record.notes || '',
-                                        '记录日期': record.recordedDate || ''
-                                    };
-                                });
-                                
-                                const heatWs = XLSX.utils.json_to_sheet(heatData);
-                                XLSX.utils.book_append_sheet(wb, heatWs, '发情记录');
-                            }
-                            
-                            // 生成Excel文件并下载
-                            XLSX.writeFile(wb, `警犬完整数据_${new Date().toISOString().split('T')[0]}.xlsx`);
-                            
-                            showAlert(`成功导出完整数据到Excel，包含 ${totalDogs} 条犬只记录！`, 'success');
-                        } catch (error) {
-                            console.error('导出完整Excel失败:', error);
-                            showAlert('导出完整Excel失败，请重试！', 'danger');
-                        }
-                    });
-                }
-                
-                // 导出犬舍分布按钮
-                const exportExcelKennelBtn = document.getElementById('export-excel-kennel');
-                if (exportExcelKennelBtn) {
-                    exportExcelKennelBtn.addEventListener('click', function() {
-                        try {
-                            // 统计犬舍分布
-                            const kennelStats = {};
-                            Object.values(system.dogs).forEach(dog => {
-                                const kennel = dog.kennel || '未分配';
-                                if (!kennelStats[kennel]) {
-                                    kennelStats[kennel] = {
-                                        total: 0,
-                                        male: 0,
-                                        female: 0,
-                                        breeds: {},
-                                        areas: {},
-                                        statuses: {}
-                                    };
-                                }
-                                
-                                kennelStats[kennel].total++;
-                                if (dog.gender === 'male') kennelStats[kennel].male++;
-                                if (dog.gender === 'female') kennelStats[kennel].female++;
-                                
-                                // 统计品种
-                                const breed = dog.breed;
-                                if (!kennelStats[kennel].breeds[breed]) {
-                                    kennelStats[kennel].breeds[breed] = 0;
-                                }
-                                kennelStats[kennel].breeds[breed]++;
-                                
-                                // 统计犬舍区域
-                                const area = dog.kennelArea || '未指定';
-                                if (!kennelStats[kennel].areas[area]) {
-                                    kennelStats[kennel].areas[area] = 0;
-                                }
-                                kennelStats[kennel].areas[area]++;
-                                
-                                // 统计状态
-                                const status = dog.status || '未知';
-                                if (!kennelStats[kennel].statuses[status]) {
-                                    kennelStats[kennel].statuses[status] = 0;
-                                }
-                                kennelStats[kennel].statuses[status]++;
-                            });
-                            
-                            // 准备Excel数据
-                            const excelData = [];
-                            Object.entries(kennelStats).forEach(([kennel, stats]) => {
-                                // 将品种统计转换为字符串
-                                const breedList = Object.entries(stats.breeds)
-                                    .map(([breed, count]) => `${breed}: ${count}`)
-                                    .join('; ');
-                                    
-                                // 将区域统计转换为字符串
-                                const areaList = Object.entries(stats.areas)
-                                    .map(([area, count]) => `${area}: ${count}`)
-                                    .join('; ');
-                                    
-                                // 将状态统计转换为字符串
-                                const statusList = Object.entries(stats.statuses)
-                                    .map(([status, count]) => `${status}: ${count}`)
-                                    .join('; ');
-                                
-                                excelData.push({
-                                    '犬舍号': kennel,
-                                    '总犬只数': stats.total,
-                                    '雄性犬': stats.male,
-                                    '雌性犬': stats.female,
-                                    '品种分布': breedList,
-                                    '区域分布': areaList,
-                                    '状态分布': statusList
-                                });
-                            });
-                            
-                            // 创建工作簿
-                            const wb = XLSX.utils.book_new();
-                            const ws = XLSX.utils.json_to_sheet(excelData);
-                            XLSX.utils.book_append_sheet(wb, ws, '犬舍分布统计');
-                            XLSX.writeFile(wb, `犬舍分布统计_${new Date().toISOString().split('T')[0]}.xlsx`);
-                            
-                            showAlert(`成功导出犬舍分布统计到Excel！`, 'success');
-                        } catch (error) {
-                            console.error('导出犬舍分布Excel失败:', error);
-                            showAlert('导出犬舍分布Excel失败，请重试！', 'danger');
-                        }
-                    });
-                }
+                // 设置Excel导出功能
+                setupExcelExport();
             }
             
             // 初始化系统
             initSystem();
         });
     </script>
+
+    <script>
+        // ===== 登录逻辑（新增） =====
+        (function () {
+            const AUTH_USER = "001749";
+            const AUTH_PASS = "jsjq123456!";
+            const AUTH_KEY  = "k9_auth_v1";
+
+            function $(id){ return document.getElementById(id); }
+
+            function showLogin() {
+                const login = $("login-screen");
+                const app = $("app-container");
+                if (login) {
+                    login.style.display = "flex";
+                    login.setAttribute("aria-hidden", "false");
+                }
+                if (app) app.style.display = "none";
+                // 聚焦用户名
+                setTimeout(() => { $("login-username")?.focus(); }, 50);
+            }
+
+            function showApp() {
+                const login = $("login-screen");
+                const app = $("app-container");
+                if (login) {
+                    login.style.display = "none";
+                    login.setAttribute("aria-hidden", "true");
+                }
+                if (app) app.style.display = "";
+            }
+
+            function isAuthed() {
+                return localStorage.getItem(AUTH_KEY) === "1";
+            }
+
+            function setError(msg){
+                const box = $("login-error");
+                const txt = $("login-error-text");
+                if (txt) txt.textContent = msg || "用户名或密码错误";
+                if (box) box.style.display = "flex";
+            }
+
+            function clearError(){
+                const box = $("login-error");
+                if (box) box.style.display = "none";
+            }
+
+            function bindLoginUI(){
+                const form = $("login-form");
+                const resetBtn = $("login-reset");
+
+                if (resetBtn) {
+                    resetBtn.addEventListener("click", function(){
+                        $("login-username").value = "";
+                        $("login-password").value = "";
+                        clearError();
+                        $("login-username")?.focus();
+                    });
+                }
+
+                if (form) {
+                    form.addEventListener("submit", function(e){
+                        e.preventDefault();
+                        clearError();
+                        const u = ($("login-username")?.value || "").trim();
+                        const p = $("login-password")?.value || "";
+                        if (u === AUTH_USER && p === AUTH_PASS) {
+                            localStorage.setItem(AUTH_KEY, "1");
+                            showApp();
+                        } else {
+                            setError("用户名或密码错误，请重试。");
+                        }
+                    });
+                }
+
+                const logoutBtn = $("logout-btn");
+                if (logoutBtn) {
+                    logoutBtn.addEventListener("click", function(){
+                        localStorage.removeItem(AUTH_KEY);
+                        // 为避免页面状态残留，直接刷新
+                        window.location.reload();
+                    });
+                }
+            }
+
+            document.addEventListener("DOMContentLoaded", function(){
+                bindLoginUI();
+                if (isAuthed()) {
+                    showApp();
+                } else {
+                    showLogin();
+                }
+            });
+        })();
+    </script>
+
 </body>
 </html>
